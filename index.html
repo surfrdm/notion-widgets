@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horloge Casablanca</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .clock-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .time-display {
+            font-size: 72px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+        
+        .seconds {
+            font-size: 32px;
+            color: #764ba2;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .date-display {
+            font-size: 18px;
+            color: #555;
+            margin: 15px 0;
+        }
+        
+        .day-display {
+            font-size: 20px;
+            color: #667eea;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+        
+        @media (max-width: 480px) {
+            .clock-container {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .time-display {
+                font-size: 48px;
+            }
+            
+            .seconds {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="clock-container">
+        <h1>Casablanca</h1>
+        <div class="time-display" id="time">--:--</div>
+        <div class="seconds" id="seconds">--</div>
+        <div class="date-display" id="date">--</div>
+        <div class="day-display" id="day">--</div>
+    </div>
+    
+    <script>
+        function updateClock() {
+            // Get current time in Casablanca timezone
+            const casablancaTime = new Date().toLocaleString('fr-FR', {
+                timeZone: 'Africa/Casablanca'
+            });
+            
+            const casablancaDate = new Date(casablancaTime);
+            
+            // Format time as HH:MM
+            const hours = String(casablancaDate.getHours()).padStart(2, '0');
+            const minutes = String(casablancaDate.getMinutes()).padStart(2, '0');
+            const seconds = String(casablancaDate.getSeconds()).padStart(2, '0');
+            
+            // Update time display
+            document.getElementById('time').textContent = `${hours}:${minutes}`;
+            document.getElementById('seconds').textContent = `${seconds}`;
+            
+            // Format and update date
+            const dateOptions = {
+                timeZone: 'Africa/Casablanca',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+            
+            const formattedDate = new Date().toLocaleDateString('fr-FR', dateOptions);
+            document.getElementById('date').textContent = formattedDate;
+            
+            // Format and update day
+            const dayOptions = {
+                timeZone: 'Africa/Casablanca',
+                weekday: 'long'
+            };
+            
+            const formattedDay = new Date().toLocaleDateString('fr-FR', dayOptions);
+            document.getElementById('day').textContent = formattedDay.charAt(0).toUpperCase() + formattedDay.slice(1);
+        }
+        
+        // Update clock immediately on page load
+        updateClock();
+        
+        // Update clock every second
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
