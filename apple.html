@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horloge Casablanca - Style Apple - Redimensionnable</title>
+    <title>Horloge Casablanca - Style Apple</title>
     <style>
         * {
             margin: 0;
@@ -15,57 +15,18 @@
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
             background: #ffffff;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
-            gap: 20px;
-        }
-
-        .controls {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.05);
-            padding: 15px 25px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .controls button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 14px;
-            transition: transform 0.2s;
-        }
-
-        .controls button:hover {
-            transform: scale(1.05);
-        }
-
-        .controls button:active {
-            transform: scale(0.98);
-        }
-
-        .size-display {
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-            min-width: 80px;
-            text-align: center;
         }
 
         .clock-container {
             position: relative;
             width: 350px;
             height: 350px;
-            transition: all 0.3s ease;
+            transform: scale(0.6);
+            transform-origin: center;
         }
 
         .glass-card {
@@ -230,48 +191,9 @@
         .glass-card {
             animation: shimmer 6s ease-in-out infinite;
         }
-
-        @media (max-width: 480px) {
-            .clock-container {
-                width: 300px;
-                height: 300px;
-            }
-            
-            .clock-face {
-                inset: 15px;
-            }
-            
-            .hour-hand {
-                height: 65px;
-            }
-            
-            .minute-hand {
-                height: 90px;
-            }
-            
-            .second-hand {
-                height: 100px;
-            }
-            
-            .tick {
-                transform-origin: center 140px;
-            }
-
-            .controls {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="controls">
-        <button id="decreaseBtn">− Réduire</button>
-        <div class="size-display" id="sizeDisplay">100%</div>
-        <button id="increaseBtn">+ Agrandir</button>
-        <button id="resetBtn">↺ Réinitialiser</button>
-    </div>
-
     <div class="clock-container" id="clockContainer">
         <div class="glass-card"></div>
         <div class="clock-face" id="clockFace"></div>
@@ -284,26 +206,13 @@
     </div>
 
     <script>
-        let currentScale = 1;
-        const minScale = 0.5;
-        const maxScale = 1.5;
-        const step = 0.1;
-
-        const decreaseBtn = document.getElementById('decreaseBtn');
-        const increaseBtn = document.getElementById('increaseBtn');
-        const resetBtn = document.getElementById('resetBtn');
-        const sizeDisplay = document.getElementById('sizeDisplay');
-        const clockContainer = document.getElementById('clockContainer');
-
         function createTicks() {
             const clockFace = document.getElementById('clockFace');
-            if (clockFace.children.length === 0) {
-                for (let i = 0; i < 60; i++) {
-                    const tick = document.createElement('div');
-                    tick.className = i % 5 === 0 ? 'tick major' : 'tick';
-                    tick.style.transform = `rotate(${i * 6}deg)`;
-                    clockFace.appendChild(tick);
-                }
+            for (let i = 0; i < 60; i++) {
+                const tick = document.createElement('div');
+                tick.className = i % 5 === 0 ? 'tick major' : 'tick';
+                tick.style.transform = `rotate(${i * 6}deg)`;
+                clockFace.appendChild(tick);
             }
         }
 
@@ -328,31 +237,6 @@
             const secondsStr = String(seconds).padStart(2, '0');
             document.getElementById('digitalTime').textContent = `${hoursStr}:${minutesStr}:${secondsStr}`;
         }
-
-        function updateScale() {
-            const percentage = Math.round(currentScale * 100);
-            sizeDisplay.textContent = `${percentage}%`;
-            clockContainer.style.transform = `scale(${currentScale})`;
-        }
-
-        decreaseBtn.addEventListener('click', () => {
-            if (currentScale > minScale) {
-                currentScale = Math.max(minScale, currentScale - step);
-                updateScale();
-            }
-        });
-
-        increaseBtn.addEventListener('click', () => {
-            if (currentScale < maxScale) {
-                currentScale = Math.min(maxScale, currentScale + step);
-                updateScale();
-            }
-        });
-
-        resetBtn.addEventListener('click', () => {
-            currentScale = 1;
-            updateScale();
-        });
 
         createTicks();
         updateClock();
