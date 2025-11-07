@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Clock - Casablanca</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .minimal-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .clock-widget {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 50px;
+            padding: 60px 50px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            min-width: 320px;
+        }
+
+        .location-badge {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .time-display {
+            font-size: 72px;
+            font-weight: 200;
+            color: #667eea;
+            font-variant-numeric: tabular-nums;
+            line-height: 1;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .date-line {
+            font-size: 13px;
+            color: #aaa;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        .day-name {
+            font-size: 16px;
+            color: #764ba2;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ddd, transparent);
+            margin: 25px 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #999;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .info-value {
+            font-size: 18px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        @media (max-width: 600px) {
+            .clock-widget {
+                padding: 40px 30px;
+                min-width: auto;
+            }
+
+            .time-display {
+                font-size: 52px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="minimal-card">
+        <div class="clock-widget">
+            <div class="location-badge">📍 Casablanca</div>
+            
+            <div class="time-display" id="timeDisplay">--:--</div>
+            
+            <div class="divider"></div>
+            
+            <div class="date-line" id="dateDisplay">--</div>
+            <div class="day-name" id="dayDisplay">--</div>
+            
+            <div class="divider"></div>
+            
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Secondes</div>
+                    <div class="info-value" id="secondsDisplay">--</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Fuseau</div>
+                    <div class="info-value">UTC+1</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateMinimalClock() {
+            const now = new Date();
+            
+            // Convert to Casablanca timezone
+            const casablancaTime = new Date(now.toLocaleString('en-US', { timeZone: 'Africa/Casablanca' }));
+            
+            const hours = casablancaTime.getHours();
+            const minutes = casablancaTime.getMinutes();
+            const seconds = casablancaTime.getSeconds();
+            const day = casablancaTime.getDate();
+            const month = casablancaTime.getMonth();
+            const year = casablancaTime.getFullYear();
+            const dayOfWeek = casablancaTime.getDay();
+            
+            // Format time
+            const hoursStr = String(hours).padStart(2, '0');
+            const minutesStr = String(minutes).padStart(2, '0');
+            const secondsStr = String(seconds).padStart(2, '0');
+            
+            document.getElementById('timeDisplay').textContent = `${hoursStr}:${minutesStr}`;
+            document.getElementById('secondsDisplay').textContent = secondsStr;
+            
+            // Format date
+            const months = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 
+                          'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+            const days = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+            
+            const dateStr = `${day} ${months[month]} ${year}`;
+            document.getElementById('dateDisplay').textContent = dateStr;
+            document.getElementById('dayDisplay').textContent = days[dayOfWeek];
+        }
+        
+        // Update immediately
+        updateMinimalClock();
+        
+        // Update every second
+        setInterval(updateMinimalClock, 1000);
+    </script>
+</body>
+</html>
