@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horloge Casablanca - Style Apple</title>
+    <title>Casablanca Clock - Sélecteur de modèles</title>
     <style>
         * {
             margin: 0;
@@ -13,265 +13,146 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-            background: #ffffff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             padding: 20px;
         }
 
-        .clock-container {
-            position: relative;
-            width: 350px;
-            height: 350px;
+        .container {
+            max-width: 1000px;
+            width: 100%;
         }
 
-        .glass-card {
-            position: absolute;
-            inset: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-radius: 50%;
-            border: 1px solid rgba(220, 220, 220, 0.5);
-            box-shadow: 
-                0 10px 40px rgba(0, 0, 0, 0.08),
-                0 2px 8px rgba(0, 0, 0, 0.04),
-                inset 0 1px 0 rgba(255, 255, 255, 1),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.02);
-        }
-
-        .clock-face {
-            position: absolute;
-            inset: 20px;
-            border-radius: 50%;
-            background: 
-                radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 1) 0%, rgba(250, 250, 250, 1) 50%, rgba(245, 245, 245, 1) 100%);
-            border: 1px solid rgba(230, 230, 230, 0.8);
-            box-shadow: 
-                inset 0 2px 10px rgba(255, 255, 255, 1),
-                inset 0 -2px 10px rgba(0, 0, 0, 0.03),
-                0 2px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .center-dot {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 16px;
-            height: 16px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 
-                0 0 20px rgba(102, 126, 234, 0.6),
-                inset 0 2px 4px rgba(255, 255, 255, 0.4);
-            z-index: 10;
-        }
-
-        .hand {
-            position: absolute;
-            bottom: 50%;
-            left: 50%;
-            transform-origin: center bottom;
-            border-radius: 10px 10px 0 0;
-            transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-        }
-
-        .hour-hand {
-            width: 8px;
-            height: 80px;
-            background: linear-gradient(180deg, #1a202c 0%, #2d3748 100%);
-            margin-left: -4px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            z-index: 3;
-        }
-
-        .minute-hand {
-            width: 6px;
-            height: 110px;
-            background: linear-gradient(180deg, #2d3748 0%, #4a5568 100%);
-            margin-left: -3px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-            z-index: 4;
-        }
-
-        .second-hand {
-            width: 3px;
-            height: 120px;
-            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
-            margin-left: -1.5px;
-            box-shadow: 0 0 15px rgba(102, 126, 234, 0.5);
-            z-index: 5;
-        }
-
-        .tick {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            width: 2px;
-            height: 12px;
-            background: #000000;
-            margin-left: -1px;
-            transform-origin: center 165px;
-            border-radius: 1px;
-            opacity: 0.4;
-        }
-
-        .tick.major {
-            height: 20px;
-            width: 3px;
-            margin-left: -1.5px;
-            background: #000000;
-            opacity: 0.7;
-        }
-
-        .digital-time {
-            position: absolute;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 20px;
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            font-size: 32px;
             font-weight: 600;
-            color: #1a202c;
-            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .model-card {
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 8px 20px;
             border-radius: 20px;
-            border: 1px solid rgba(230, 230, 230, 0.8);
-            box-shadow: 
-                0 4px 12px rgba(0, 0, 0, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 1);
-            letter-spacing: 1px;
-            z-index: 6;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 2px solid transparent;
         }
 
-        .location-badge {
-            position: absolute;
-            top: 60px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 14px;
-            font-weight: 500;
-            color: #4a5568;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 6px 16px;
-            border-radius: 16px;
-            border: 1px solid rgba(230, 230, 230, 0.8);
-            box-shadow: 
-                0 4px 12px rgba(0, 0, 0, 0.06),
-                inset 0 1px 0 rgba(255, 255, 255, 1);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            z-index: 6;
+        .model-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: #667eea;
         }
 
-        @keyframes shimmer {
-            0%, 100% {
-                box-shadow: 
-                    0 10px 40px rgba(0, 0, 0, 0.08),
-                    0 2px 8px rgba(0, 0, 0, 0.04),
-                    inset 0 1px 0 rgba(255, 255, 255, 1),
-                    inset 0 -1px 0 rgba(0, 0, 0, 0.02);
-            }
-            50% {
-                box-shadow: 
-                    0 10px 40px rgba(0, 0, 0, 0.06),
-                    0 2px 8px rgba(0, 0, 0, 0.02),
-                    inset 0 1px 0 rgba(255, 255, 255, 1),
-                    inset 0 -1px 0 rgba(0, 0, 0, 0.01);
-            }
+        .model-card h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
         }
 
-        .glass-card {
-            animation: shimmer 6s ease-in-out infinite;
+        .model-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
         }
 
-        @media (max-width: 480px) {
-            .clock-container {
-                width: 300px;
-                height: 300px;
+        .model-icon {
+            font-size: 50px;
+            margin: 20px 0;
+        }
+
+        .model-card a {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .model-card a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+                margin-bottom: 30px;
             }
-            
-            .clock-face {
-                inset: 15px;
+
+            .models-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
-            
-            .hour-hand {
-                height: 65px;
-            }
-            
-            .minute-hand {
-                height: 90px;
-            }
-            
-            .second-hand {
-                height: 100px;
-            }
-            
-            .tick {
-                transform-origin: center 140px;
+
+            .model-card {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="clock-container">
-        <div class="glass-card"></div>
-        <div class="clock-face" id="clockFace"></div>
-        <div class="location-badge">📍 Casablanca</div>
-        <div class="digital-time" id="digitalTime">00:00:00</div>
-        <div class="hand hour-hand" id="hourHand"></div>
-        <div class="hand minute-hand" id="minuteHand"></div>
-        <div class="hand second-hand" id="secondHand"></div>
-        <div class="center-dot"></div>
-    </div>
-
-    <script>
-        // Créer les marqueurs d'heures
-        const clockFace = document.getElementById('clockFace');
-        for (let i = 0; i < 60; i++) {
-            const tick = document.createElement('div');
-            tick.className = i % 5 === 0 ? 'tick major' : 'tick';
-            tick.style.transform = `rotate(${i * 6}deg)`;
-            clockFace.appendChild(tick);
-        }
-
-        function updateClock() {
-            const now = new Date();
-            
-            // Convertir en heure de Casablanca (UTC+1)
-            const casablancaTime = new Date(now.toLocaleString('en-US', { timeZone: 'Africa/Casablanca' }));
-            
-            const hours = casablancaTime.getHours();
-            const minutes = casablancaTime.getMinutes();
-            const seconds = casablancaTime.getSeconds();
-            
-            // Calculer les angles
-            const secondAngle = seconds * 6; // 360/60 = 6 degrés par seconde
-            const minuteAngle = minutes * 6 + seconds * 0.1; // 6 degrés par minute + mouvement fluide
-            const hourAngle = (hours % 12) * 30 + minutes * 0.5; // 360/12 = 30 degrés par heure
-            
-            // Appliquer les rotations
-            document.getElementById('secondHand').style.transform = `rotate(${secondAngle}deg)`;
-            document.getElementById('minuteHand').style.transform = `rotate(${minuteAngle}deg)`;
-            document.getElementById('hourHand').style.transform = `rotate(${hourAngle}deg)`;
-            
-            // Afficher l'heure digitale
-            const hoursStr = String(hours).padStart(2, '0');
-            const minutesStr = String(minutes).padStart(2, '0');
-            const secondsStr = String(seconds).padStart(2, '0');
-            document.getElementById('digitalTime').textContent = `${hoursStr}:${minutesStr}:${secondsStr}`;
-        }
-
-        // Mettre à jour immédiatement
-        updateClock();
+    <div class="container">
+        <h1>⏰ Horloge Casablanca - Sélectionnez votre modèle</h1>
         
-        // Mettre à jour toutes les secondes
-        setInterval(updateClock, 1000);
-    </script>
+        <div class="models-grid">
+            <!-- Modèle Digital -->
+            <div class="model-card">
+                <div class="model-icon">📱</div>
+                <h2>Horloge Digitale</h2>
+                <p>Un design moderne avec affichage digital classique. Parfait pour une vue rapide de l'heure, la date et le jour en français.</p>
+                <a href="digital.html">Voir le modèle</a>
+            </div>
+
+            <!-- Modèle Analogique -->
+            <div class="model-card">
+                <div class="model-icon">⌚</div>
+                <h2>Horloge Analogique</h2>
+                <p>Un design Apple minimaliste avec aiguilles animées. Affichage classique avec marqueurs d'heures et style glossy moderne.</p>
+                <a href="analog.html">Voir le modèle</a>
+            </div>
+
+            <!-- Modèle Minimaliste -->
+            <div class="model-card">
+                <div class="model-icon">✨</div>
+                <h2>Horloge Minimaliste</h2>
+                <p>Un design épuré avec gradient background et reflet subtle. Combinaison parfaite entre élégance et simplicité.</p>
+                <a href="minimal.html">Voir le modèle</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Tous les modèles affichent l'heure de Casablanca en temps réel</p>
+            <p style="font-size: 14px; margin-top: 10px;">💡 Astuce: Vous pouvez utiliser n'importe quel modèle dans Notion via l'embed</p>
+        </div>
+    </div>
 </body>
 </html>
