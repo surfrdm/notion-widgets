@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horloge Casablanca - Style Apple</title>
+    <title>Horloge Casablanca - Style Apple - Redimensionnable</title>
     <style>
         * {
             margin: 0;
@@ -15,16 +15,57 @@
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
             background: #ffffff;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            gap: 20px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 15px 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .controls button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: transform 0.2s;
+        }
+
+        .controls button:hover {
+            transform: scale(1.05);
+        }
+
+        .controls button:active {
+            transform: scale(0.98);
+        }
+
+        .size-display {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            min-width: 80px;
+            text-align: center;
         }
 
         .clock-container {
             position: relative;
             width: 350px;
             height: 350px;
+            transition: all 0.3s ease;
         }
 
         .glass-card {
@@ -215,11 +256,23 @@
             .tick {
                 transform-origin: center 140px;
             }
+
+            .controls {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="clock-container">
+    <div class="controls">
+        <button id="decreaseBtn">− Réduire</button>
+        <div class="size-display" id="sizeDisplay">100%</div>
+        <button id="increaseBtn">+ Agrandir</button>
+        <button id="resetBtn">↺ Réinitialiser</button>
+    </div>
+
+    <div class="clock-container" id="clockContainer">
         <div class="glass-card"></div>
         <div class="clock-face" id="clockFace"></div>
         <div class="location-badge">📍 Casablanca</div>
@@ -231,46 +284,78 @@
     </div>
 
     <script>
-        // Créer les marqueurs d'heures
-        const clockFace = document.getElementById('clockFace');
-        for (let i = 0; i < 60; i++) {
-            const tick = document.createElement('div');
-            tick.className = i % 5 === 0 ? 'tick major' : 'tick';
-            tick.style.transform = `rotate(${i * 6}deg)`;
-            clockFace.appendChild(tick);
+        let currentScale = 1;
+        const minScale = 0.5;
+        const maxScale = 1.5;
+        const step = 0.1;
+
+        const decreaseBtn = document.getElementById('decreaseBtn');
+        const increaseBtn = document.getElementById('increaseBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const sizeDisplay = document.getElementById('sizeDisplay');
+        const clockContainer = document.getElementById('clockContainer');
+
+        function createTicks() {
+            const clockFace = document.getElementById('clockFace');
+            if (clockFace.children.length === 0) {
+                for (let i = 0; i < 60; i++) {
+                    const tick = document.createElement('div');
+                    tick.className = i % 5 === 0 ? 'tick major' : 'tick';
+                    tick.style.transform = `rotate(${i * 6}deg)`;
+                    clockFace.appendChild(tick);
+                }
+            }
         }
 
         function updateClock() {
             const now = new Date();
-            
-            // Convertir en heure de Casablanca (UTC+1)
             const casablancaTime = new Date(now.toLocaleString('en-US', { timeZone: 'Africa/Casablanca' }));
             
             const hours = casablancaTime.getHours();
             const minutes = casablancaTime.getMinutes();
             const seconds = casablancaTime.getSeconds();
             
-            // Calculer les angles
-            const secondAngle = seconds * 6; // 360/60 = 6 degrés par seconde
-            const minuteAngle = minutes * 6 + seconds * 0.1; // 6 degrés par minute + mouvement fluide
-            const hourAngle = (hours % 12) * 30 + minutes * 0.5; // 360/12 = 30 degrés par heure
+            const secondAngle = seconds * 6;
+            const minuteAngle = minutes * 6 + seconds * 0.1;
+            const hourAngle = (hours % 12) * 30 + minutes * 0.5;
             
-            // Appliquer les rotations
             document.getElementById('secondHand').style.transform = `rotate(${secondAngle}deg)`;
             document.getElementById('minuteHand').style.transform = `rotate(${minuteAngle}deg)`;
             document.getElementById('hourHand').style.transform = `rotate(${hourAngle}deg)`;
             
-            // Afficher l'heure digitale
             const hoursStr = String(hours).padStart(2, '0');
             const minutesStr = String(minutes).padStart(2, '0');
             const secondsStr = String(seconds).padStart(2, '0');
             document.getElementById('digitalTime').textContent = `${hoursStr}:${minutesStr}:${secondsStr}`;
         }
 
-        // Mettre à jour immédiatement
+        function updateScale() {
+            const percentage = Math.round(currentScale * 100);
+            sizeDisplay.textContent = `${percentage}%`;
+            clockContainer.style.transform = `scale(${currentScale})`;
+        }
+
+        decreaseBtn.addEventListener('click', () => {
+            if (currentScale > minScale) {
+                currentScale = Math.max(minScale, currentScale - step);
+                updateScale();
+            }
+        });
+
+        increaseBtn.addEventListener('click', () => {
+            if (currentScale < maxScale) {
+                currentScale = Math.min(maxScale, currentScale + step);
+                updateScale();
+            }
+        });
+
+        resetBtn.addEventListener('click', () => {
+            currentScale = 1;
+            updateScale();
+        });
+
+        createTicks();
         updateClock();
-        
-        // Mettre à jour toutes les secondes
         setInterval(updateClock, 1000);
     </script>
 </body>
