@@ -1,0 +1,485 @@
+{
+  "source": "RIAPA Catalogue Master",
+  "specialite": "Véhicules Japonais & Coréens",
+  "marques_compatibles": [
+    "Toyota",
+    "Hyundai",
+    "Kia",
+    "Nissan",
+    "Mitsubishi",
+    "Suzuki",
+    "Honda",
+    "Isuzu",
+    "Daihatsu"
+  ],
+  "total_categories": 8,
+  "total_familles_pieces": 71,
+  "categories": [
+    {
+      "main_category": "Pièces Autos - Moteur",
+      "subcategories": [
+        {
+          "slug": "chemises",
+          "name": "Chemises de cylindre",
+          "code": "MOT-CHM-01",
+          "desc": "Chemises sèches et humides haute résistance thermique pour blocs moteurs japonais et coréens."
+        },
+        {
+          "slug": "pistons",
+          "name": "Pistons & Axes",
+          "code": "MOT-PIS-01",
+          "desc": "Pistons forgés et coulés avec traitement antifriction, segments et axes."
+        },
+        {
+          "slug": "segments",
+          "name": "Segments de piston",
+          "code": "MOT-SEG-01",
+          "desc": "Jeux de segments compression, racleurs et étanchéité de précision OEM."
+        },
+        {
+          "slug": "ensembles-chemises-pistons",
+          "name": "Ensembles Chemises & Pistons",
+          "code": "MOT-ENS-01",
+          "desc": "Kits complets de rénovation moteur chemises, pistons, axes et segments appairés."
+        },
+        {
+          "slug": "kits-distribution",
+          "name": "Kits de Distribution",
+          "code": "MOT-DIS-01",
+          "desc": "Courroies crantées, galets tendeurs, enrouleurs et chaînes de distribution."
+        },
+        {
+          "slug": "pochettes-joints",
+          "name": "Pochettes de Joints Moteur",
+          "code": "MOT-JNT-01",
+          "desc": "Pochettes complètes rodage et carter : joints de culasse métalliques, queues de soupapes."
+        },
+        {
+          "slug": "pompes-a-eau",
+          "name": "Pompes à Eau",
+          "code": "MOT-EAU-01",
+          "desc": "Pompes à eau de refroidissement avec turbines renforcées et joints d étanchéité."
+        },
+        {
+          "slug": "pompes-a-huile",
+          "name": "Pompes à Huile",
+          "code": "MOT-HUL-01",
+          "desc": "Pompes à engrenages à haut débit pour maintien de pression d huile optimale."
+        },
+        {
+          "slug": "coussinets",
+          "name": "Coussinets de Bielle & Palier",
+          "code": "MOT-COU-01",
+          "desc": "Coussinets trimétal de vilebrequin, bagues de bielle et cales latérales."
+        },
+        {
+          "slug": "soupapes",
+          "name": "Soupapes & Guides",
+          "code": "MOT-SOU-01",
+          "desc": "Soupapes d admission, d échappement et guides haute tenue en température."
+        },
+        {
+          "slug": "culasses",
+          "name": "Culasses",
+          "code": "MOT-CUL-01",
+          "desc": "Culasses nues et équipées en alliage d aluminium usinées avec précision."
+        },
+        {
+          "slug": "supports-moteur",
+          "name": "Supports Moteur",
+          "code": "MOT-SUP-01",
+          "desc": "Silentblocs et supports moteur hydrauliques pour absorption des vibrations."
+        },
+        {
+          "slug": "silent-blocs",
+          "name": "Silentblocs Châssis & Moteur",
+          "code": "MOT-SLB-01",
+          "desc": "Silentblocs élastomères et polyuréthane pour trains roulants et berceau."
+        }
+      ]
+    },
+    {
+      "main_category": "Pièces Autos - Embrayage & Transmission",
+      "subcategories": [
+        {
+          "slug": "mecanismes-embrayage",
+          "name": "Mécanismes d Embrayage",
+          "code": "TRM-MEC-01",
+          "desc": "Plateaux de pression et diaphragmes traités pour une transmission de couple optimale."
+        },
+        {
+          "slug": "disques-embrayage",
+          "name": "Disques d Embrayage",
+          "code": "TRM-DSQ-01",
+          "desc": "Disques garnis organiques haute longévité avec ressorts d amortissement."
+        },
+        {
+          "slug": "butees-embrayage",
+          "name": "Butées d Embrayage",
+          "code": "TRM-BUT-01",
+          "desc": "Butées mécaniques et hydrauliques (CSC) haute résistance."
+        },
+        {
+          "slug": "kits-embrayage",
+          "name": "Kits d Embrayage Complets",
+          "code": "TRM-KIT-01",
+          "desc": "Kits 3 pièces (mécanisme, disque, butée) prêt au montage."
+        },
+        {
+          "slug": "volants-moteur",
+          "name": "Volants Moteur (Rigides & Bi-masses)",
+          "code": "TRM-VOL-01",
+          "desc": "Volants d inertie et volants bimasses amortissant les à-coups moteur."
+        },
+        {
+          "slug": "fourchettes-embrayage",
+          "name": "Fourchettes d Embrayage",
+          "code": "TRM-FCH-01",
+          "desc": "Fourchettes de débrayage renforcées."
+        },
+        {
+          "slug": "pompes-embrayage",
+          "name": "Émetteurs & Récepteurs d Embrayage",
+          "code": "TRM-PMP-01",
+          "desc": "Cylindres hydrauliques émetteur à la pédale et récepteur de boîte."
+        }
+      ]
+    },
+    {
+      "main_category": "Pièces Autos - Direction & Suspension",
+      "subcategories": [
+        {
+          "slug": "amortisseurs",
+          "name": "Amortisseurs Avant & Arrière",
+          "code": "DIR-AMO-01",
+          "desc": "Amortisseurs gaz et huile pour tenue de route et confort optimal."
+        },
+        {
+          "slug": "barres-direction",
+          "name": "Barres & Tringleries de Direction",
+          "code": "DIR-BAR-01",
+          "desc": "Barres de direction centrales et barres d accouplement renforcées."
+        },
+        {
+          "slug": "biellettes",
+          "name": "Biellettes de Barre Stabilisatrice",
+          "code": "DIR-BIE-01",
+          "desc": "Biellettes anti-roulis avec rotules scellées étanches."
+        },
+        {
+          "slug": "triangles",
+          "name": "Triangles & Bras de Suspension",
+          "code": "DIR-TRI-01",
+          "desc": "Bras de suspension inférieurs et supérieurs avec rotules intégrées."
+        },
+        {
+          "slug": "rotules",
+          "name": "Rotules de Suspension & Direction",
+          "code": "DIR-ROT-01",
+          "desc": "Rotules de pivot haute résistance aux chocs et charges lourdes."
+        },
+        {
+          "slug": "embouts-direction",
+          "name": "Embouts de Crémaillère",
+          "code": "DIR-EMB-01",
+          "desc": "Biellettes axiales et rotules de direction réglables."
+        },
+        {
+          "slug": "cremailleres",
+          "name": "Crémaillères de Direction",
+          "code": "DIR-CRE-01",
+          "desc": "Crémaillères mécaniques et assistées hydrauliques / électriques."
+        },
+        {
+          "slug": "cardans",
+          "name": "Cardans & Transmissions",
+          "code": "DIR-CRD-01",
+          "desc": "Transmissions complètes, joints homocinétiques et soufflets de cardan."
+        },
+        {
+          "slug": "moyeux",
+          "name": "Moyeux de Roue",
+          "code": "DIR-MOY-01",
+          "desc": "Moyeux avec capteurs ABS intégrés haute endurance."
+        },
+        {
+          "slug": "roulements",
+          "name": "Roulements de Roue",
+          "code": "DIR-RLM-01",
+          "desc": "Kits de roulements coniques et roulements cartouches étanches."
+        }
+      ]
+    },
+    {
+      "main_category": "Pièces Autos - Freinage",
+      "subcategories": [
+        {
+          "slug": "disques-frein",
+          "name": "Disques de Frein (Ventilés / Pleins)",
+          "code": "FRN-DSQ-01",
+          "desc": "Disques en fonte traitée anti-corrosion, haute dissipation thermique."
+        },
+        {
+          "slug": "plaquettes-frein",
+          "name": "Plaquettes de Frein",
+          "code": "FRN-PLQ-01",
+          "desc": "Plaquettes céramique et semi-métalliques certifiées ECE R90 sans bruit."
+        },
+        {
+          "slug": "tambours",
+          "name": "Tambours & Mâchoires de Frein",
+          "code": "FRN-TAM-01",
+          "desc": "Tambours usinés équilibrés et kits de mâchoires prémontées."
+        },
+        {
+          "slug": "cylindres-roue",
+          "name": "Cylindres de Roue",
+          "code": "FRN-CYL-01",
+          "desc": "Cylindres récepteurs pour freins arrière à tambour."
+        },
+        {
+          "slug": "flexibles-frein",
+          "name": "Flexibles de Frein",
+          "code": "FRN-FLX-01",
+          "desc": "Durites de frein armées résistant aux hautes pressions."
+        },
+        {
+          "slug": "maitres-cylindres",
+          "name": "Maîtres-Cylindres de Frein",
+          "code": "FRN-MTR-01",
+          "desc": "Maître-cylindre tandem avec réservoir et capteur de niveau."
+        }
+      ]
+    },
+    {
+      "main_category": "Pièces Autos - Filtration",
+      "subcategories": [
+        {
+          "slug": "filtres-air",
+          "name": "Filtres à Air Moteur",
+          "code": "FLT-AIR-01",
+          "desc": "Filtres cellulose plissée haute capacité de rétention des poussières."
+        },
+        {
+          "slug": "filtres-gasoil",
+          "name": "Filtres à Carburant (Gasoil)",
+          "code": "FLT-GAS-01",
+          "desc": "Filtres séparateurs d eau et impuretés pour injecteurs Common Rail."
+        },
+        {
+          "slug": "filtres-huile",
+          "name": "Filtres à Huile",
+          "code": "FLT-HUL-01",
+          "desc": "Cartouches et filtres vissables avec clapet anti-retour taré."
+        },
+        {
+          "slug": "filtres-essence",
+          "name": "Filtres à Essence",
+          "code": "FLT-ESS-01",
+          "desc": "Filtres métalliques en ligne pour circuits haute pression injection."
+        },
+        {
+          "slug": "filtres-particules",
+          "name": "Filtres d Habitacle & FAP",
+          "code": "FLT-PAR-01",
+          "desc": "Filtres d habitacle à charbon actif et éléments de filtrage FAP."
+        }
+      ]
+    },
+    {
+      "main_category": "Carrosserie - Tôlerie",
+      "subcategories": [
+        {
+          "slug": "pare-chocs",
+          "name": "Pare-chocs Avant & Arrière",
+          "code": "CA-TOL-01",
+          "desc": "Boucliers pare-chocs injectés polypropylène avec apprêt prêts à peindre."
+        },
+        {
+          "slug": "capots",
+          "name": "Capots Moteur",
+          "code": "CA-TOL-02",
+          "desc": "Capots emboutis en acier électrozingué et aluminium, insonorisant inclus."
+        },
+        {
+          "slug": "ailes",
+          "name": "Ailes Avant & Arrière",
+          "code": "CA-TOL-03",
+          "desc": "Ailes gauche et droite conformes aux lignes et cotes constructeurs."
+        },
+        {
+          "slug": "calandres",
+          "name": "Calandres & Grilles de Calandre",
+          "code": "CA-TOL-04",
+          "desc": "Calandres chromées, noires mates et avec inserts logo."
+        },
+        {
+          "slug": "panneaux",
+          "name": "Panneaux de Carrosserie & Bas de Caisse",
+          "code": "CA-TOL-05",
+          "desc": "Tôles de réparation, planchers et bas de caisse latéraux."
+        },
+        {
+          "slug": "portes",
+          "name": "Portières & Hayons",
+          "code": "CA-TOL-06",
+          "desc": "Panneaux de portes avant/arrière, hayons et volets de coffre."
+        },
+        {
+          "slug": "masques",
+          "name": "Masques & Faces Avant",
+          "code": "CA-TOL-07",
+          "desc": "Ossatures et traverses support radiateur et phares."
+        },
+        {
+          "slug": "renforts-pare-chocs",
+          "name": "Renforts de Pare-chocs",
+          "code": "CA-TOL-08",
+          "desc": "Barres anti-collision en acier haute résistance et absorbeurs mousse."
+        },
+        {
+          "slug": "supports-pare-chocs",
+          "name": "Supports & Guides de Pare-chocs",
+          "code": "CA-TOL-09",
+          "desc": "Pattes et guides latéraux de clipsage de pare-chocs."
+        },
+        {
+          "slug": "pare-boue",
+          "name": "Pare-boue (Passages de Roue)",
+          "code": "CA-TOL-10",
+          "desc": "Garde-boue intérieurs en plastique thermoformé anti-projections."
+        }
+      ]
+    },
+    {
+      "main_category": "Carrosserie - Éclairage & Équipements",
+      "subcategories": [
+        {
+          "slug": "optiques",
+          "name": "Optiques de Phares Avant",
+          "code": "CA-ECL-01",
+          "desc": "Blocs optiques halogènes, LED et Xénon avec réglage motorisé."
+        },
+        {
+          "slug": "feux",
+          "name": "Feux Arrière",
+          "code": "CA-ECL-02",
+          "desc": "Feux arrières multifonctions stop, clignotant, recul et antibrouillard."
+        },
+        {
+          "slug": "antibrouillards",
+          "name": "Phares Antibrouillard",
+          "code": "CA-ECL-03",
+          "desc": "Projecteurs antibrouillard avant gauche/droit à lentille cristal."
+        },
+        {
+          "slug": "catadioptres",
+          "name": "Catadioptres & Répétiteurs",
+          "code": "CA-ECL-04",
+          "desc": "Réflecteurs de pare-chocs arrière et répétiteurs d aile LED."
+        },
+        {
+          "slug": "retroviseurs",
+          "name": "Rétroviseurs Extérieurs",
+          "code": "CA-EQU-01",
+          "desc": "Rétroviseurs électriques, dégivrants, rabattables avec répétiteur."
+        },
+        {
+          "slug": "ventilateurs",
+          "name": "Motoventilateurs de Refroidissement",
+          "code": "CA-EQU-02",
+          "desc": "Groupes moto-ventilateurs doubles et simples avec buse radiateur."
+        }
+      ]
+    },
+    {
+      "main_category": "Lubrifiants & Produits d Entretien",
+      "subcategories": [
+        {
+          "slug": "huiles-moteur",
+          "name": "Huiles Moteur (5W30, 5W40, 10W40, 15W40)",
+          "code": "LUB-MOT-01",
+          "desc": "Huiles synthétiques et semi-synthétiques normes API/ACEA pour essence et diesel."
+        },
+        {
+          "slug": "huiles-boite",
+          "name": "Huiles de Boîte de Vitesses & Pont",
+          "code": "LUB-BOX-01",
+          "desc": "Fluides de transmission manuelle et automatique ATF / CVT."
+        },
+        {
+          "slug": "liquides-frein",
+          "name": "Liquides de Frein DOT 4 & DOT 5.1",
+          "code": "LUB-FRN-01",
+          "desc": "Liquides de frein haute température à point d ébullition élevé."
+        },
+        {
+          "slug": "huile-direction-assistee",
+          "name": "Fluides de Direction Assistée",
+          "code": "LUB-DIR-01",
+          "desc": "Huiles hydrauliques spécifiques pour pompes et boîtiers de direction."
+        },
+        {
+          "slug": "traitement-gasoil",
+          "name": "Traitements & Additifs Gasoil",
+          "code": "LUB-TRG-01",
+          "desc": "Additifs antibactériens, réducteurs de fumée et décrassage FAP."
+        },
+        {
+          "slug": "traitement-essence",
+          "name": "Traitements Essence",
+          "code": "LUB-TRE-01",
+          "desc": "Stabilisateurs de carburant et nettoyants injecteurs essence."
+        },
+        {
+          "slug": "nettoyant-injecteurs",
+          "name": "Nettoyants Injecteurs & Système Carburant",
+          "code": "LUB-INJ-01",
+          "desc": "Formules curatives pour injection bouchée et ralenti instable."
+        },
+        {
+          "slug": "nettoyant-bloc-moteur",
+          "name": "Dégraissants & Nettoyants Bloc Moteur",
+          "code": "LUB-BLC-01",
+          "desc": "Dégraissants puissants pour carter, boîte et compartiment moteur."
+        },
+        {
+          "slug": "performance-huile-moteur",
+          "name": "Additifs Anti-Friction & Viscosité",
+          "code": "LUB-PRF-01",
+          "desc": "Traitements céramique et bisulfure de molybdène MoS2."
+        },
+        {
+          "slug": "anti-fuite",
+          "name": "Anti-Fuite Moteur & Radiateur",
+          "code": "LUB-FUIT-01",
+          "desc": "Régénérateurs de joints toriques et colmatants radiateur."
+        },
+        {
+          "slug": "nettoyant-radiateur",
+          "name": "Détartrants & Rince-Radiateur",
+          "code": "LUB-RAD-01",
+          "desc": "Nettoyants de circuit de refroidissement avant vidange."
+        },
+        {
+          "slug": "liquide-refroidissement",
+          "name": "Liquides de Refroidissement (LDR)",
+          "code": "LUB-LDR-01",
+          "desc": "Liquides antigel -25°C / -35°C technologie OAT longue durée."
+        },
+        {
+          "slug": "lave-glace",
+          "name": "Liquides Lave-Glace Toutes Saisons",
+          "code": "LUB-LAV-01",
+          "desc": "Formules dégraissantes anti-reflet et anti-traces de moustiques."
+        },
+        {
+          "slug": "graisse",
+          "name": "Graisses Mécaniques & Cardans",
+          "code": "LUB-GRS-01",
+          "desc": "Graisses lithium haute pression, cuivre et spéciale soufflets de cardan."
+        }
+      ]
+    }
+  ]
+}
