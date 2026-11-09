@@ -90,6 +90,39 @@
     </div>
   </header>
 
+  
+  <!-- ======================================================== -->
+  <!-- BANDEAU FLASH VISIBLE B2B & MOTEUR IA (IMPOSSIBLE À RATER) -->
+  <!-- ======================================================== -->
+  <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-indigo-950 text-white border-b-2 border-red-500 py-2.5 px-4 shadow-xl relative z-40">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+        <span class="font-black text-amber-400 text-xs md:text-sm tracking-wide uppercase flex items-center gap-1.5">
+          <i class="fa-solid fa-sparkles text-amber-300"></i>
+          Fonctionnalités B2B & IA en Démonstration :
+        </span>
+      </div>
+
+      <!-- LES DEUX BOUTONS CLÉS DIRECTS -->
+      <div class="flex flex-wrap items-center gap-2">
+        <!-- BOUTON 1 : ESPACE PRO LIAISON MATERIEL & IP -->
+        <button onclick="openB2BModal()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-red-600 hover:from-amber-500 hover:to-red-500 text-white font-black text-xs flex items-center gap-2 shadow-lg shadow-red-600/30 border border-amber-400/40 transition-all hover:scale-105 cursor-pointer">
+          <i class="fa-solid fa-shield-halved text-amber-200 text-sm"></i>
+          <span>1. Espace Pro (Liaison Matériel & IP)</span>
+          <span class="px-1.5 py-0.2 bg-black/40 rounded text-[9px] text-amber-300 font-mono">🔒 Sécurisé</span>
+        </button>
+
+        <!-- BOUTON 2 : MOTEUR IA 5 FOURNISSEURS & MARGE -->
+        <button onclick="openAiComparator('31420-0K070')" class="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-500 hover:to-indigo-600 text-white font-black text-xs flex items-center gap-2 shadow-lg shadow-indigo-600/30 border border-blue-400/40 transition-all hover:scale-105 cursor-pointer">
+          <i class="fa-solid fa-robot text-amber-400 text-sm"></i>
+          <span>2. Moteur IA (5 Fournisseurs & Marge)</span>
+          <span class="px-1.5 py-0.2 bg-black/40 rounded text-[9px] text-emerald-300 font-mono">🤖 Auto</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- NAVBAR -->
   <nav class="bg-white sticky top-0 z-40 shadow-md border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
@@ -173,6 +206,59 @@
         <p class="text-slate-300 text-sm sm:text-base leading-relaxed" data-i18n="heroSubtitle">
           Pièces mécaniques pures et carrosserie pour véhicules japonais et coréens. Vues éclatées schématiques, cotes constructeurs et contrôle technique par numéro de châssis.
         </p>
+      </div>
+
+      <!-- LES 2 GRANDES CARTES PRO B2B ET MOTEUR IA (AU COEUR DE LA PAGE D'ACCUEIL) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto mb-8 animate-fade-in">
+        <!-- CARTE 1 : ESPACE CLIENT PRO SECURISE -->
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-950 to-black border-2 border-amber-500/50 shadow-2xl relative overflow-hidden group hover:border-amber-400 transition-all">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-2xl group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div>
+                <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase bg-amber-500/20 text-amber-300 border border-amber-500/30">Module 1 : Sécurité B2B</span>
+                <h3 class="text-base md:text-lg font-black text-white mt-0.5">Portail Client Pro (Verrouillage Matériel & IP)</h3>
+              </div>
+            </div>
+            <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+          </div>
+          <p class="text-xs text-slate-300 mb-4 leading-relaxed">
+            Chaque code client (<code class="text-amber-300 font-bold">AM-PRO-2026</code>) est strictement verrouillé à la première connexion sur le <strong class="text-white">PC ou téléphone exact</strong> et l'<strong class="text-white">adresse IP</strong>. Tout accès concurrent ou inconnu est automatiquement bloqué.
+          </p>
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="openB2BModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-red-600 hover:from-amber-500 hover:to-red-500 text-white font-black text-xs flex items-center gap-2 shadow-lg shadow-red-600/30 transition-all hover:scale-[1.02] cursor-pointer">
+              <i class="fa-solid fa-lock"></i>
+              <span>Ouvrir l'Espace Pro B2B & Tester la Sécurité</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- CARTE 2 : MOTEUR IA 5 FOURNISSEURS & MARGE -->
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-indigo-950 via-slate-950 to-black border-2 border-indigo-500/50 shadow-2xl relative overflow-hidden group hover:border-indigo-400 transition-all">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center text-indigo-400 text-2xl group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-robot"></i>
+              </div>
+              <div>
+                <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Module 2 : Intelligence Artificielle</span>
+                <h3 class="text-base md:text-lg font-black text-white mt-0.5">Comparateur 5 Fournisseurs & Marge Automatique</h3>
+              </div>
+            </div>
+            <span class="w-3 h-3 rounded-full bg-indigo-400 animate-ping"></span>
+          </div>
+          <p class="text-xs text-slate-300 mb-4 leading-relaxed">
+            L'agent IA interroge les bases de <strong class="text-white">5 fournisseurs</strong> (RIAPA, Asie Hub, Taiwan Direct...), sélectionne le meilleur coût, applique votre <strong class="text-emerald-400">marge nette (+35%)</strong> et calcule le prix client en masquant les fournisseurs.
+          </p>
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="openAiComparator('31420-0K070')" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-black text-xs flex items-center gap-2 shadow-lg shadow-indigo-600/30 transition-all hover:scale-[1.02] cursor-pointer">
+              <i class="fa-solid fa-calculator"></i>
+              <span>Lancer le Comparateur IA 5 Fournisseurs</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- MARQUES CONSTRUCTEURS -->
