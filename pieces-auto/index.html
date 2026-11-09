@@ -163,11 +163,18 @@
         <div class="relative">
           <input id="searchInput" type="text" 
             placeholder="Rechercher une pièce exacte (ex: pare-chocs, embrayage, disque, filtre...)" 
-            class="w-full pl-10 pr-10 rtl:pr-10 rtl:pl-10 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white text-sm focus:bg-white dark:focus:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition-all shadow-inner font-sans" />
+            class="w-full pl-10 pr-16 rtl:pr-16 rtl:pl-10 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white text-sm focus:bg-white dark:focus:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition-all shadow-inner font-sans" />
           <i id="searchIcon" class="fa-solid fa-magnifying-glass absolute left-3.5 rtl:left-auto rtl:right-3.5 top-3.5 text-slate-400 text-sm"></i>
-          <button id="clearSearch" class="hidden absolute right-3.5 rtl:right-auto rtl:left-3.5 top-3 text-slate-400 hover:text-slate-600">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
+          
+          <div class="absolute right-2.5 rtl:right-auto rtl:left-2.5 top-2 flex items-center gap-1">
+            <!-- Micro recherche vocale -->
+            <button onclick="toggleSearchVoiceRecognition()" class="p-1.5 text-slate-400 hover:text-red-600 rounded-lg transition-colors" title="Recherche vocale (هضر بالميكرو)">
+              <i id="searchMicIcon" class="fa-solid fa-microphone text-xs"></i>
+            </button>
+            <button id="clearSearch" class="hidden p-1 text-slate-400 hover:text-slate-600">
+              <i class="fa-solid fa-xmark text-xs"></i>
+            </button>
+          </div>
         </div>
 
         <!-- Exemples 1-Clic de Châssis pour Démonstration -->
@@ -1050,13 +1057,32 @@
 
       </div>
 
-      <!-- CHAT INPUT -->
-      <div class="p-2.5 bg-white border-t border-slate-200 flex items-center gap-2">
+      <!-- BANDEAU D'ECOUTE VOCALE EN DARIJA (VOICE SPEECH-TO-TEXT) -->
+      <div id="voiceListeningBanner" class="hidden px-3.5 py-2 bg-gradient-to-r from-red-600 via-amber-600 to-red-600 text-white text-xs font-bold flex items-center justify-between border-t border-red-700 animate-pulse font-cairo shadow-inner">
+        <span class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
+          <span>🎤 كنسمعك دابا... هضر بالدارجة (مثال: بغيت بومبة دبرياج هيلوكس)</span>
+        </span>
+        <button onclick="stopVoiceRecognition()" class="text-white hover:text-slate-200 text-xs px-2 py-0.5 rounded bg-black/40 font-bold border border-white/20 cursor-pointer">
+          إيقاف ⏹️
+        </button>
+      </div>
+
+      <!-- CHAT INPUT AVEC BOUTON MICRO VOCAL DARIJA -->
+      <div class="p-2.5 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2">
+        <!-- BOUTON MICRO ENREGISTREUR VOCAL -->
+        <button id="voiceInputBtn" onclick="toggleVoiceRecognition()" 
+          class="w-8 h-8 rounded-xl bg-red-50 dark:bg-slate-800 hover:bg-red-600 text-red-600 hover:text-white dark:text-red-400 dark:hover:text-white flex items-center justify-center text-sm border border-red-200 dark:border-slate-700 transition-all shadow-sm shrink-0 cursor-pointer"
+          title="هضر بالدارجة فالميكرو (Voice Darija)">
+          <i id="micIcon" class="fa-solid fa-microphone text-xs"></i>
+        </button>
+
         <input id="chatInput" type="text" 
-          placeholder="كتب بالدارجة أو بالفرنسية..." 
+          placeholder="هضر بالميكرو 🎤 أو كتب بالدارجة..." 
           onkeypress="if(event.key === 'Enter') handleUserSendMessage()"
-          class="flex-1 px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-red-600 transition-all font-cairo" />
-        <button onclick="handleUserSendMessage()" class="w-8 h-8 rounded-xl bg-red-600 hover:bg-red-700 text-white flex items-center justify-center shrink-0 shadow-md shadow-red-600/30">
+          class="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white text-xs focus:bg-white dark:focus:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-red-600 transition-all font-cairo" />
+
+        <button onclick="handleUserSendMessage()" class="w-8 h-8 rounded-xl bg-red-600 hover:bg-red-700 text-white flex items-center justify-center shrink-0 shadow-md shadow-red-600/30 cursor-pointer">
           <i class="fa-solid fa-paper-plane text-xs"></i>
         </button>
       </div>
@@ -1617,6 +1643,134 @@
     }
 
     // ================= DARIJA CHATBOT LOGIC =================
+    
+    // ========================================================
+    // MOTEUR DE RECONNAISSANCE VOCALE EN DARIJA MAROCAINE (SPEECH-TO-TEXT)
+    // ========================================================
+    let speechRecognition = null;
+    let isVoiceListening = false;
+    let voiceTarget = 'chat'; // 'chat' | 'search'
+
+    // Initialisation de l'API Web Speech
+    function getSpeechRecognizer() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) return null;
+      const recognizer = new SpeechRecognition();
+      recognizer.lang = 'ar-MA'; // Arabe marocain / Darija officiel
+      recognizer.continuous = false;
+      recognizer.interimResults = true;
+      recognizer.maxAlternatives = 1;
+      return recognizer;
+    }
+
+    function toggleVoiceRecognition() {
+      voiceTarget = 'chat';
+      if (isVoiceListening) {
+        stopVoiceRecognition();
+      } else {
+        startVoiceRecognition();
+      }
+    }
+
+    function toggleSearchVoiceRecognition() {
+      voiceTarget = 'search';
+      if (isVoiceListening) {
+        stopVoiceRecognition();
+      } else {
+        startVoiceRecognition();
+      }
+    }
+
+    function startVoiceRecognition() {
+      const RecognizerClass = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!RecognizerClass) {
+        alert("🎙️ خاصية الميكروفون الصوتي مدعومة فـ متصفحات Google Chrome و Safari و Edge و Android.\n\nتقدر تكتب بالدارجة مباشرة، أو تواصل معنا عبر أوديو فواتساب بالضغط على زر WhatsApp الأخضر!");
+        return;
+      }
+
+      try {
+        if (!speechRecognition) {
+          speechRecognition = getSpeechRecognizer();
+        }
+
+        const banner = document.getElementById('voiceListeningBanner');
+        const micIcon = document.getElementById('micIcon');
+        const micBtn = document.getElementById('voiceInputBtn');
+        const searchMicIcon = document.getElementById('searchMicIcon');
+
+        speechRecognition.onstart = () => {
+          isVoiceListening = true;
+          if (voiceTarget === 'chat') {
+            if (banner) banner.classList.remove('hidden');
+            if (micBtn) micBtn.className = "w-9 h-9 rounded-xl bg-red-600 text-white flex items-center justify-center text-sm shadow-lg shadow-red-600/40 animate-bounce";
+            if (micIcon) micIcon.className = "fa-solid fa-microphone-lines text-sm";
+          } else {
+            if (searchMicIcon) searchMicIcon.className = "fa-solid fa-microphone-lines text-xs text-red-600 animate-ping";
+          }
+        };
+
+        speechRecognition.onresult = (event) => {
+          let transcript = '';
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            transcript += event.results[i][0].transcript;
+          }
+
+          if (voiceTarget === 'chat') {
+            const input = document.getElementById('chatInput');
+            if (input) input.value = transcript;
+          } else {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+              searchInput.value = transcript;
+              searchQuery = transcript.toLowerCase();
+              renderProducts();
+            }
+          }
+        };
+
+        speechRecognition.onerror = (event) => {
+          console.warn("Speech recognition notice:", event.error);
+          stopVoiceRecognition();
+        };
+
+        speechRecognition.onend = () => {
+          stopVoiceRecognition();
+
+          // Si du texte a été capté dans le chat, on l'envoie automatiquement après un court délai !
+          if (voiceTarget === 'chat') {
+            const input = document.getElementById('chatInput');
+            if (input && input.value.trim().length > 1) {
+              setTimeout(() => {
+                handleUserSendMessage();
+              }, 700);
+            }
+          }
+        };
+
+        speechRecognition.start();
+      } catch (err) {
+        console.error("Voice start error:", err);
+        stopVoiceRecognition();
+      }
+    }
+
+    function stopVoiceRecognition() {
+      isVoiceListening = false;
+      const banner = document.getElementById('voiceListeningBanner');
+      const micIcon = document.getElementById('micIcon');
+      const micBtn = document.getElementById('voiceInputBtn');
+      const searchMicIcon = document.getElementById('searchMicIcon');
+
+      if (banner) banner.classList.add('hidden');
+      if (micBtn) micBtn.className = "w-9 h-9 rounded-xl bg-red-50 dark:bg-slate-800 hover:bg-red-600 text-red-600 hover:text-white dark:text-red-400 dark:hover:text-white flex items-center justify-center text-sm border border-red-200 dark:border-slate-700 transition-all shadow-sm shrink-0 cursor-pointer";
+      if (micIcon) micIcon.className = "fa-solid fa-microphone text-sm";
+      if (searchMicIcon) searchMicIcon.className = "fa-solid fa-microphone text-xs";
+
+      if (speechRecognition) {
+        try { speechRecognition.stop(); } catch(e) {}
+      }
+    }
+
     function toggleDarijaChat() {
       const win = document.getElementById('chatWindow');
       win.classList.toggle('hidden');
@@ -1698,6 +1852,21 @@
         else if (text.includes('toyota') || text.includes('hyundai') || text.includes('kia') || text.includes('تويوتا') || text.includes('هيونداي') || text.includes('كيا') || text.includes('نيسان')) {
           reply = `مرحبا بيك! حنا **متخصصين رسميين** فـ القطع الأصلية للسيارات اليابانية والكورية (Hilux, Yaris, Tucson, Accent, Sportage, Picanto, Qashqai...).<br><br>
           شنو القطعة لي باغي تبدل؟`;
+        }
+        else if (text.includes('audio') || text.includes('صوت') || text.includes('أوديو') || text.includes('ميكرو')) {
+          reply = `سمعتك مزيان أخويا! 🎙️<br><br>
+          تقدر تهضر معايا فـ الميكرو فـ أي وقت، أو تكمل المحادثة أوديو مباشرة فـ WhatsApp مع التقني ديالنا!<br><br>
+          <a href="https://wa.me/212522651414?text=${encodeURIComponent('السلام عليكم AM Pièces Auto، صيفطت لكم أوديو صوتي بخصوص قطعة غيار.')}" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md">
+            <i class="fa-brands fa-whatsapp text-sm"></i> صيفط أوديو فـ WhatsApp
+          </a>`;
+        }
+        else if (text.includes('hilux') || text.includes('revo') || text.includes('هيلوكس') || text.includes('ريفو') || text.includes('كانتير') || text.includes('canter') || text.includes('crv') || text.includes('cr-v')) {
+          reply = `موجودة قطعتك الأصلية فـ المخزون ومطابقة 100%! 🚘<br><br>
+          عندنا <strong>بومبات الدبرياج الأصلية (AISIN, NISSIN, SEIKEN)</strong> وجميع فلاتر وسفايف الفرامل لهاد الموديل.<br><br>
+          واش بغيتي نربطك دابا مع مستشار المبيعات فـ WhatsApp لحجز القطعة؟<br><br>
+          <a href="https://wa.me/212522651414?text=${encodeURIComponent('السلام عليكم، لقيت القطعة فالموقع وبغيت نتأكد من التوفر والسعر : ' + userMsg)}" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold text-xs mt-1">
+            <i class="fa-brands fa-whatsapp"></i> طلب القطعة دابا فـ WhatsApp
+          </a>`;
         }
         else {
           reply = `مفهوم أخويا! حنا عندنا أكثر من <strong>71 صنف د القطع</strong> (ميكانيك، طولة، إضاءة، زيوت...).<br><br>
