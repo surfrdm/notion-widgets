@@ -42,7 +42,7 @@
       background: radial-gradient(circle at top right, #991b1b 0%, #0f172a 60%, #020617 100%);
     }
     .technical-card-bg {
-      background: radial-gradient(circle at center, #1e293b 0%, #090d16 100%);
+      background: #ffffff;
     }
     [dir="rtl"] {
       font-family: 'Cairo', sans-serif;
@@ -1496,49 +1496,45 @@
         displayCat = displayCat.replace('Pièces Autos - ', '').replace('Carrosserie - ', '').replace('قطع غيار السيارات - ', '').replace('هيكل السيارة - ', '');
 
         const visualBlock = p.real_image ? `
-          <div class="w-full h-full flex items-center justify-center p-2 group-hover:scale-105 transition-transform duration-300">
-            <img src="${p.real_image}" alt="${displayName}" class="max-h-36 object-contain rounded-md drop-shadow-md" />
+          <div class="w-full h-full flex items-center justify-center p-3 group-hover:scale-105 transition-transform duration-300">
+            <img src="${p.real_image}" alt="${displayName}" class="max-h-36 max-w-full object-contain" />
           </div>
-          <div class="absolute bottom-2 right-2 rtl:right-auto rtl:left-2 px-2 py-0.5 rounded bg-black/80 text-[10px] text-amber-300 font-bold backdrop-blur-sm border border-amber-400/30">
-            <i class="fa-solid fa-camera mr-1"></i> ${currentLang === 'ar' ? 'صورة القطعة' : 'Photo Réelle'}
+          <div class="absolute bottom-2 right-2 rtl:right-auto rtl:left-2 px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 text-[10px] font-bold border border-emerald-200 shadow-sm flex items-center gap-1">
+            <i class="fa-solid fa-circle-check text-emerald-600"></i> ${currentLang === 'ar' ? 'صورة أصلية' : 'Photo Réelle OEM'}
           </div>
         ` : `
-          <div class="w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+          <div class="w-full h-full flex items-center justify-center p-3 group-hover:scale-105 transition-transform duration-300">
             ${svgContent}
           </div>
         `;
 
         const priceBlock = p.price ? `
-          <div class="flex items-baseline justify-between mb-2 bg-red-50/80 px-2.5 py-1 rounded-lg border border-red-100">
-            <span class="text-[11px] text-slate-500 font-semibold">${currentLang === 'ar' ? 'سعر المصنع :' : 'Prix unitaire :'}</span>
-            <span class="text-sm font-black text-red-600">${p.price}</span>
+          <div class="flex items-baseline justify-between mb-2 bg-red-50/80 dark:bg-red-950/40 px-2.5 py-1.5 rounded-lg border border-red-100 dark:border-red-900/40">
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 font-semibold">${currentLang === 'ar' ? 'سعر المصنع :' : 'Prix unitaire :'}</span>
+            <span class="text-sm font-black text-red-600 dark:text-red-400">${p.price}</span>
           </div>
         ` : '';
 
         card.innerHTML = `
-          <!-- VUE TECHNIQUE OU PHOTO RÉELLE -->
-          <div class="relative w-full h-44 technical-card-bg flex items-center justify-center p-3 border-b border-slate-800 overflow-hidden">
+          <!-- VITRINE PHOTO PACKSHOT PURE WHITE (FOND BLANC STUDIO) -->
+          <div class="relative w-full h-44 bg-white flex items-center justify-center p-3 border-b border-slate-100 dark:border-slate-800/80 overflow-hidden rounded-t-2xl">
             ${visualBlock}
 
-            <div class="absolute top-3 left-3 rtl:left-auto rtl:right-3">
-              <span class="px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-white font-mono text-[10px] font-black tracking-wider border border-white/20">
+            <div class="absolute top-2.5 left-2.5 rtl:left-auto rtl:right-2.5">
+              <span class="px-2.5 py-0.5 rounded-md bg-slate-900 text-white font-mono text-[10px] font-black tracking-wider shadow-sm border border-slate-700">
                 ${p.code}
               </span>
             </div>
 
-            <div class="absolute top-3 right-3 rtl:right-auto rtl:left-3">
-              <span class="inline-flex items-center text-[10px] font-bold text-white bg-red-600/90 backdrop-blur-md px-2.5 py-0.5 rounded-full shadow-md border border-red-400/40">
+            <div class="absolute top-2.5 right-2.5 rtl:right-auto rtl:left-2.5">
+              <span class="inline-flex items-center text-[10px] font-bold text-red-700 bg-red-50 px-2 py-0.5 rounded-full shadow-sm border border-red-200">
                 <img src="${logoSrc}" alt="AM" class="h-3 w-auto mr-1 rtl:ml-1 rtl:mr-0" /> ${translations[currentLang].amCertified}
               </span>
             </div>
 
-            <div class="absolute bottom-2 right-2 rtl:right-auto rtl:left-2 pointer-events-none opacity-40 group-hover:opacity-80 transition-opacity">
-              <img src="${logoSrc}" alt="AM Watermark" class="h-5 w-auto drop-shadow-md" />
-            </div>
-
-            <div class="absolute bottom-2.5 left-3 rtl:left-auto rtl:right-3">
-              <span class="text-[10px] font-bold text-red-400 flex items-center gap-1 drop-shadow bg-black/60 px-2 py-0.5 rounded-md backdrop-blur-sm border border-white/10">
-                <i class="${getCategoryIcon(p.mainCategory)}"></i>
+            <div class="absolute bottom-2.5 left-2.5 rtl:left-auto rtl:right-2.5">
+              <span class="text-[10px] font-bold text-slate-700 bg-slate-50 px-2 py-0.5 rounded-md border border-slate-200 flex items-center gap-1 shadow-sm">
+                <i class="${getCategoryIcon(p.mainCategory)} text-red-600"></i>
                 <span>${displayCat}</span>
               </span>
             </div>
