@@ -314,16 +314,16 @@
             <i class="fa-solid fa-car text-red-400"></i>
             <span data-i18n="filterLabelMake">1. Marque</span>
           </label>
-          <select id="filterMakeSelect" onchange="onProFilterChange()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-semibold focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition-all">
-            <option value="all">Toutes les marques (Toyota, Hyundai...)</option>
-            <option value="Toyota">Toyota (Hilux, Yaris, Land Cruiser...)</option>
-            <option value="Hyundai">Hyundai (Tucson, Accent, H1...)</option>
-            <option value="Kia">Kia (Sportage, Picanto, K2700...)</option>
-            <option value="Nissan">Nissan (Navara, Qashqai, Patrol...)</option>
-            <option value="Mitsubishi">Mitsubishi (Canter, L200, Pajero...)</option>
-            <option value="Isuzu">Isuzu (D-Max, NPR, NQR...)</option>
-            <option value="Suzuki">Suzuki (Jimny, Swift, Carry...)</option>
-            <option value="Honda">Honda (CR-V, Civic, Accord...)</option>
+          <select id="filterMakeSelect" onchange="onProFilterChange()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-semibold focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition-all font-sans">
+            <option value="all" data-i18n="optMakeAll">Toutes les marques (Toyota, Hyundai...)</option>
+            <option value="Toyota" data-i18n="optMakeToyota">Toyota (Hilux, Yaris, Land Cruiser...)</option>
+            <option value="Hyundai" data-i18n="optMakeHyundai">Hyundai (Tucson, Accent, H1...)</option>
+            <option value="Kia" data-i18n="optMakeKia">Kia (Sportage, Picanto, K2700...)</option>
+            <option value="Nissan" data-i18n="optMakeNissan">Nissan (Navara, Qashqai, Patrol...)</option>
+            <option value="Mitsubishi" data-i18n="optMakeMitsubishi">Mitsubishi (Canter, L200, Pajero...)</option>
+            <option value="Isuzu" data-i18n="optMakeIsuzu">Isuzu (D-Max, NPR, NQR...)</option>
+            <option value="Suzuki" data-i18n="optMakeSuzuki">Suzuki (Jimny, Swift, Carry...)</option>
+            <option value="Honda" data-i18n="optMakeHonda">Honda (CR-V, Civic, Accord...)</option>
           </select>
         </div>
 
@@ -333,15 +333,15 @@
             <i class="fa-solid fa-cogs text-red-400"></i>
             <span data-i18n="filterLabelSystem">2. Système</span>
           </label>
-          <select id="filterSystemSelect" onchange="onProFilterChange()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-semibold focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition-all">
-            <option value="all">Tous les systèmes</option>
-            <option value="Pièces Autos - Moteur">Moteur & Distribution</option>
-            <option value="Pièces Autos - Embrayage & Transmission">Embrayage & Boîte</option>
-            <option value="Pièces Autos - Direction & Suspension">Direction & Suspension</option>
-            <option value="Pièces Autos - Freinage">Freinage & Hydraulique</option>
-            <option value="Pièces Autos - Filtration">Filtration Complète</option>
-            <option value="Éclairage & Visibilité">Éclairage & Optiques</option>
-            <option value="Lubrifiants & Produits d Entretien">Huiles & Entretien</option>
+          <select id="filterSystemSelect" onchange="onProFilterChange()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-semibold focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition-all font-sans">
+            <option value="all" data-i18n="optSysAll">Tous les systèmes mécaniques</option>
+            <option value="Pièces Autos - Moteur" data-i18n="optSysMoteur">المحرك وتوابعه — Moteur & Distribution</option>
+            <option value="Pièces Autos - Embrayage & Transmission" data-i18n="optSysEmbrayage">الدبرياج وعلبة السرعة — Embrayage & Boîte</option>
+            <option value="Pièces Autos - Direction & Suspension" data-i18n="optSysSuspension">التوجيه والمساعدين — Direction & Suspension</option>
+            <option value="Pièces Autos - Freinage" data-i18n="optSysFreinage">الفرامل والهيدروليك — Freinage & Hydraulique</option>
+            <option value="Pièces Autos - Filtration" data-i18n="optSysFiltration">الفلاتر والتصفية — Filtration Complète</option>
+            <option value="Éclairage & Visibilité" data-i18n="optSysEclairage">الإضاءة والمرايا — Éclairage & Optiques</option>
+            <option value="Lubrifiants & Produits d Entretien" data-i18n="optSysLubrifiants">الزيوت ومواد الصيانة — Huiles & Entretien</option>
           </select>
         </div>
 
@@ -351,17 +351,17 @@
             <i class="fa-solid fa-certificate text-red-400"></i>
             <span data-i18n="filterLabelBrand">3. Fabricant / OEM</span>
           </label>
-          <select id="filterBrandSelect" onchange="onProFilterChange()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-semibold focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition-all">
-            <option value="all">Tous équipementiers OEM</option>
-            <option value="AISIN">AISIN Japan (1ère monte)</option>
-            <option value="NISSIN">NISSIN Japan</option>
-            <option value="SEIKEN">SEIKEN Japan</option>
-            <option value="NABTESCO">NABTESCO JP/TW</option>
-            <option value="DENSO">DENSO Japan</option>
-            <option value="KYB">KYB Kayaba Japan</option>
-            <option value="555">555 Sankei Japan</option>
-            <option value="VALEO">VALEO OEM</option>
-            <option value="BREMBO">BREMBO Brakes</option>
+          <select id="filterBrandSelect" onchange="onProFilterChange()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-semibold focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition-all font-sans">
+            <option value="all" data-i18n="optBrandAll">Tous équipementiers OEM</option>
+            <option value="AISIN" data-i18n="optBrandAisin">AISIN Japan (أصلي وكالة 1ère monte)</option>
+            <option value="NISSIN" data-i18n="optBrandNissin">NISSIN Japan (هوندا وتويوتا)</option>
+            <option value="SEIKEN" data-i18n="optBrandSeiken">SEIKEN Japan (هيدروليك ياباني)</option>
+            <option value="NABTESCO" data-i18n="optBrandNabtesco">NABTESCO JP/TW (شاحنات كانتر)</option>
+            <option value="DENSO" data-i18n="optBrandDenso">DENSO Japan (كهرباء وفلاتر)</option>
+            <option value="KYB" data-i18n="optBrandKyb">KYB Kayaba (مساعدين أصلية)</option>
+            <option value="555" data-i18n="optBrand555">555 Sankei Japan (أذرع وروديلات)</option>
+            <option value="VALEO" data-i18n="optBrandValeo">VALEO OEM (دبرياج أصلي)</option>
+            <option value="BREMBO" data-i18n="optBrandBrembo">BREMBO Brakes (ديسكات وبلاكيط)</option>
           </select>
         </div>
 
@@ -371,14 +371,14 @@
             <i class="fa-solid fa-arrows-up-down-left-right text-red-400"></i>
             <span data-i18n="filterLabelPosition">4. Position / Montage</span>
           </label>
-          <select id="filterPositionSelect" onchange="onProFilterChange()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-semibold focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition-all">
-            <option value="all">Toutes positions</option>
-            <option value="avant">Avant (Front)</option>
-            <option value="arriere">Arrière (Rear)</option>
-            <option value="superieur">Supérieur / Haut (Émetteur)</option>
-            <option value="inferieur">Inférieur / Bas (Récepteur)</option>
-            <option value="gauche">Côté Gauche</option>
-            <option value="droit">Côté Droit</option>
+          <select id="filterPositionSelect" onchange="onProFilterChange()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-semibold focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition-all font-sans">
+            <option value="all" data-i18n="optPosAll">Toutes positions</option>
+            <option value="avant" data-i18n="optPosFront">أمامي — Avant (Front)</option>
+            <option value="arriere" data-i18n="optPosRear">خلفي — Arrière (Rear)</option>
+            <option value="superieur" data-i18n="optPosTop">علوي (مضخة رئيسية) — Supérieur / Haut</option>
+            <option value="inferieur" data-i18n="optPosBottom">سفلي (مستقبل) — Inférieur / Bas</option>
+            <option value="gauche" data-i18n="optPosLeft">الجهة اليسرى — Côté Gauche</option>
+            <option value="droit" data-i18n="optPosRight">الجهة اليمنى — Côté Droit</option>
           </select>
         </div>
 
@@ -388,11 +388,11 @@
             <i class="fa-solid fa-warehouse text-red-400"></i>
             <span data-i18n="filterLabelStock">5. Disponibilité Stock</span>
           </label>
-          <select id="filterStockSelect" onchange="onProFilterChange()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-semibold focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition-all">
-            <option value="all">Tous les stocks</option>
-            <option value="in_stock">🟢 En Stock Immédiat Magasin (2h)</option>
-            <option value="hub_casa">🟢 Dépôt Central Casa (24h)</option>
-            <option value="express">🟡 Arrivage Import Asie Express</option>
+          <select id="filterStockSelect" onchange="onProFilterChange()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-semibold focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition-all font-sans">
+            <option value="all" data-i18n="optStockAll">جميع حالات التوفر بالمخزون</option>
+            <option value="in_stock" data-i18n="optStockMagasin">🟢 متوفر فوراً بالمحل (ساعتان)</option>
+            <option value="hub_casa" data-i18n="optStockCasa">🟢 متوفر بمستودع كازا المركزي (24 ساعة)</option>
+            <option value="express" data-i18n="optStockImport">🟡 شحن استيراد مباشر من آسيا سريع</option>
           </select>
         </div>
       </div>
@@ -1023,7 +1023,7 @@
         quoteBtnNav: "Demande de Devis",
         heroBadge: "Schémas & Vues Techniques — 61 Familles Référencées",
         heroTitle: "Catalogue Technique Automobile Officiel",
-        heroSubtitle: "Pièces mécaniques pures et carrosserie pour véhicules japonais et coréens. Vues éclatées schématiques, cotes constructeurs et contrôle technique par numéro de châssis.",
+        heroSubtitle: "Pièces mécaniques pures certifiées OEM pour véhicules japonais et coréens (Toyota, Hyundai, Kia, Nissan...). Vues éclatées schématiques, cotes constructeurs et contrôle technique par numéro de châssis.",
         selectMakeLabel: "Sélectionnez votre marque constructeur :",
         oemBrandsLabel: "Fournisseurs d'Origine Asie Certifiés :",
         allMakes: "Toutes marques",
@@ -1086,6 +1086,7 @@
         heroTitle: "الكتالوج التقني الرسمي لقطع غيار السيارات",
         heroSubtitle: "قطع غيار ميكانيكية أصلية معتمدة OEM لسيارات اليابان وكوريا (تويوتا، هيونداي، كيا، نيسان...). مطابقة دقيقة ومراقبة تقنية عبر رقم الشاسيه والكارت غريز.",
         selectMakeLabel: "اختر نوع وماركة سيارتك :",
+        oemBrandsLabel: "المصانع والموردون المعتمدون في آسيا :",
         allMakes: "جميع الماركات",
         searchPlaceholder: "ابحث عن قطعة محددة (مضخة دبرياج، ديسك فرامل، فلتر، أمتيسور، بومبة ماء...)",
         allDepartments: "جميع الأقسام",
@@ -1224,6 +1225,7 @@
       renderMakes();
       renderCategoryTabs();
       renderProducts();
+      if (typeof renderMainFamilies === 'function') renderMainFamilies();
     }
 
     function renderMakes() {
@@ -1512,6 +1514,7 @@
       renderCategoryTabs();
       renderProducts();
       if (typeof renderMainFamilies === 'function') renderMainFamilies();
+      if (typeof renderMainFamilies === 'function') renderMainFamilies();
     }
 
     function setVinFromFilter(vin) {
@@ -1681,6 +1684,7 @@
       renderMakes();
       renderCategoryTabs();
       renderProducts();
+      if (typeof renderMainFamilies === 'function') renderMainFamilies();
     }
 
     function openQuoteModal(partName) {
