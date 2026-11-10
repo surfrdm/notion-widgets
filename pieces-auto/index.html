@@ -124,7 +124,7 @@
       </div>
 
       <div class="flex items-center gap-2">
-        <button onclick="openAiComparator('31420-0K070')" class="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-indigo-600/30 transition-all">
+        <button onclick="openAiComparator('31420-0K070')" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-md transition-all">
           <i class="fa-solid fa-calculator text-amber-400"></i>
           <span>Ouvrir Comparateur 5 Fournisseurs</span>
         </button>
@@ -178,7 +178,7 @@
             <!-- 2. EMBRAYAGE -->
             <button onclick="selectCategoryFromMenu('Pièces Autos - Embrayage & Transmission')" class="w-full text-left rtl:text-right px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all flex items-center justify-between group/item">
               <div class="flex items-center gap-2.5">
-                <span class="w-7 h-7 rounded-lg bg-blue-50 dark:bg-blue-950/50 flex items-center justify-center text-blue-600 text-xs">
+                <span class="w-7 h-7 rounded-lg bg-red-50 dark:bg-red-950/50 flex items-center justify-center text-red-600 text-xs">
                   <i class="fa-solid fa-circle-notch"></i>
                 </span>
                 <div>
@@ -301,7 +301,7 @@
           <button onclick="applySampleVin('MR0FR22G9J1048291')" class="px-2 py-0.5 rounded bg-slate-100 hover:bg-red-50 hover:text-red-600 text-slate-700 font-mono font-bold border border-slate-200 transition-all">
             Hilux Revo (MR0FR22...)
           </button>
-          <button onclick="applySampleVin('SHSRE67708U104289')" class="px-2 py-0.5 rounded bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-slate-700 font-mono font-bold border border-slate-200 transition-all">
+          <button onclick="applySampleVin('SHSRE67708U104289')" class="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono font-bold border border-slate-200 transition-all">
             CR-V (SHSRE67...)
           </button>
           <button onclick="applySampleVin('JL6FB634E0K039218')" class="px-2 py-0.5 rounded bg-slate-100 hover:bg-emerald-50 hover:text-emerald-600 text-slate-700 font-mono font-bold border border-slate-200 transition-all">
@@ -403,19 +403,14 @@
     <!-- ======================================================== -->
     <div class="mt-8 bg-white dark:bg-slate-900 rounded-3xl p-5 md:p-7 border-2 border-slate-300 dark:border-slate-700 shadow-2xl text-slate-900 dark:text-white transition-colors duration-200">
       <div class="flex flex-wrap items-center justify-between gap-3 mb-5 pb-4 border-b border-slate-200 dark:border-slate-800">
-        <div class="flex items-center gap-3">
-          <span class="w-10 h-10 rounded-2xl bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center text-white shadow-lg shadow-red-600/30">
-            <i class="fa-solid fa-sliders text-base"></i>
-          </span>
-          <div>
-            <h3 class="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-              <span data-i18n="proFilterTitle">Recherche & Filtre Technique Multicritères</span>
-              <span class="px-2 py-0.5 rounded-full bg-red-600/30 border border-red-500/40 text-red-300 text-[10px] font-bold uppercase tracking-wider">B2B Pro</span>
-            </h3>
-            <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5" data-i18n="proFilterSubtitle">
-              Identifiez instantanément vos pièces par Marque, Modèle, Système mécanique, Position et Disponibilité.
-            </p>
-          </div>
+        <div>
+          <h3 class="text-base sm:text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <span data-i18n="proFilterTitle">Recherche & Filtre Technique Multicritères</span>
+            <span class="px-2 py-0.5 rounded-full bg-red-100 dark:bg-red-950 text-red-600 dark:text-red-400 text-[10px] font-bold uppercase tracking-wider border border-red-200 dark:border-red-900">B2B Pro</span>
+          </h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5" data-i18n="proFilterSubtitle">
+            Identifiez instantanément vos pièces par Marque, Modèle, Système mécanique, Position et Disponibilité.
+          </p>
         </div>
 
         <button onclick="resetAllProFilters()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-extrabold transition-all flex items-center gap-1.5 border border-slate-300 dark:border-slate-700 shadow-sm">
@@ -785,19 +780,14 @@
 
       <!-- En-tête -->
       <div class="flex flex-wrap items-center justify-between gap-4 pb-4 mb-5 border-b border-slate-800">
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white text-2xl shadow-lg shadow-indigo-500/30">
-            <i class="fa-solid fa-robot"></i>
+        <div>
+          <div class="flex items-center gap-2">
+            <h3 class="text-lg md:text-xl font-black text-white">Comparateur 5 Fournisseurs & Calculateur de Marge</h3>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-red-950 text-red-300 border border-red-800">Mode Pro / Back-Office</span>
           </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <h3 class="text-lg md:text-xl font-black text-white">Moteur IA - Comparateur 5 Fournisseurs</h3>
-              <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Mode Pro / Back-Office</span>
-            </div>
-            <p class="text-xs text-slate-400 mt-0.5 font-arabic" dir="rtl">
-              نظام الذكاء الاصطناعي: مقارنة ومسح أسعار 5 شركات مع احتساب هامش الربح أوتوماتيكياً
-            </p>
-          </div>
+          <p class="text-xs text-slate-400 mt-0.5 font-arabic" dir="rtl">
+            مقارنة ومسح أسعار 5 شركات مع احتساب هامش الربح أوتوماتيكياً
+          </p>
         </div>
 
         <!-- Badge Protection Client Final -->
@@ -1874,12 +1864,7 @@
                 <i class="fa-solid fa-tag text-xs"></i>
                 <span>${translations[currentLang].orderBtn}</span>
               </button>
-              <!-- BOUTON MOTEUR IA 5 FOURNISSEURS (STRICTEMENT RESERVE A L'ADMINISTRATEUR) -->
-              ${isAdminLoggedIn ? `
-              <button onclick="openAiComparator('${p.code}')" class="w-full mt-2 py-1.5 px-2.5 rounded-xl bg-slate-950 hover:bg-indigo-950 text-indigo-300 hover:text-white font-bold text-[11px] flex items-center justify-center gap-1.5 border border-indigo-500/50 transition-all hover:border-indigo-400 shadow-sm animate-fade-in">
-                <i class="fa-solid fa-robot text-amber-400 text-xs"></i>
-                <span>${currentLang === 'ar' ? 'مقارن 5 شركات وهامش الربح (خاص بالمدير)' : 'Moteur IA 5 Fournisseurs & Marge (Admin)'}</span>
-              </button>` : ''}
+              <!-- BOUTON MOTEUR IA SUPPRIMÉ SELON DEMANDE CLIENT -->
             </div>
           </div>
         `;
