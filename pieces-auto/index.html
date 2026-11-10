@@ -88,9 +88,10 @@
           <span id="themeLabel" class="text-[11px]">Mode Nuit</span>
         </button>
 
-        <!-- LANG SWITCH BUTTON -->
+        <!-- LANG SWITCH BUTTON (FR / EN / AR - STYLE RIAPA) -->
         <div class="flex items-center bg-slate-900 rounded-lg p-0.5 border border-slate-700">
           <button id="langFR" onclick="setLanguage('fr')" class="px-2 py-0.5 rounded text-[11px] font-bold bg-red-600 text-white transition-all">FR</button>
+          <button id="langEN" onclick="setLanguage('en')" class="px-2 py-0.5 rounded text-[11px] font-bold text-slate-300 hover:text-white transition-all">EN</button>
           <button id="langAR" onclick="setLanguage('ar')" class="px-2 py-0.5 rounded text-[11px] font-bold text-slate-300 hover:text-white transition-all font-cairo">العربية</button>
         </div>
 
@@ -330,6 +331,10 @@
     </div>
   </nav>
 
+  <!-- ======================================================== -->
+  <!-- VUE 1 : CATALOGUE PRINCIPAL (ACCUEIL & LISTE) -->
+  <!-- ======================================================== -->
+  <div id="catalogHomeView" class="transition-opacity duration-300">
   <!-- HERO SECTION AVEC ARRIÈRE-PLAN HANGAR & RAYONNAGES RIAPA -->
   <section class="relative text-white py-16 px-4 overflow-hidden bg-slate-950 isolate border-b border-red-950/40">
     <!-- Image de Fond Hangar Stock Mécanique Réelle (RIAPA Style) -->
@@ -618,6 +623,14 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="productsGrid"></div>
 
   </main>
+  </div><!-- FIN CATALOG HOME VIEW -->
+
+  <!-- ======================================================== -->
+  <!-- VUE 2 : PAGE UNIQUE PRODUIT (STYLE RIAPA / DÉTAILS TECHNIQUES & MARQUES SUPPORTÉES) -->
+  <!-- ======================================================== -->
+  <div id="singleProductView" class="hidden min-h-screen animate-fade-in">
+    <!-- Le contenu de la page produit est injecté dynamiquement par renderProductDetailView() -->
+  </div>
 
   
   <!-- ======================================================== -->
@@ -1218,8 +1231,178 @@
         footerSpecial: "Spécialiste véhicules japonais & coréens (Toyota, Hyundai, Kia, Nissan, etc.).",
         noResultTitle: "Aucune pièce trouvée pour cette recherche.",
         noResultSub: "Vérifiez l'orthographe ou essayez un mot-clé plus court.",
+        
+        // NOUVELLES CLÉS PAGE PRODUIT UNIQUE (STYLE RIAPA)
+        backToCatalog: "← Retour au catalogue",
+        breadcrumbHome: "Accueil",
+        breadcrumbParts: "Pièces autos",
+        viewProductDetail: "Voir la fiche produit",
+        supportedBrands: "Marques couvertes",
+        supportedBrandsSub: "Pièces conformes aux tolérances d'origine des constructeurs asiatiques",
+        technicalSpecs: "Spécifications & Fiche Technique",
+        highlight1: "Pièces adaptées aux véhicules japonais et coréens",
+        highlight2: "Grandes marques d'équipementiers d'origine",
+        highlight3: "Conseil technique au comptoir et par téléphone",
+        highlight4: "Livraison en 24/48 h partout au Maroc",
+        specRef: "Référence Pièce (Code)",
+        specCategory: "Rayon / Système Mécanique",
+        specQuality: "Norme & Certification",
+        specStock: "Disponibilité",
+        specWarranty: "Garantie Constructeur",
+        specDelivery: "Délai Expédition",
+        orderWhatsApp: "Commander via WhatsApp (+212 663-633640)",
+        requestQuote: "Demander un devis officiel (PDF)",
+        relatedProducts: "Autres pièces recommandées dans cette famille",
+
         resetBtn: "Réinitialiser les filtres"
       },
+      
+      en: {
+        topShipping: "Express Delivery 24/48h across Morocco",
+        proFilterTitle: "Technical Multi-Criteria Filter & Search",
+        proFilterSubtitle: "Instantly locate your automotive parts by Make, Model, Mechanical System, Position and Availability.",
+        btnResetFilters: "Reset filters",
+        filterLabelMake: "1. Vehicle Make",
+        filterLabelSystem: "2. Mechanical System",
+        filterLabelBrand: "3. Manufacturer / OEM",
+        filterLabelPosition: "4. Position / Fitment",
+        filterLabelStock: "5. Stock Availability",
+        quickVinSearchLabel: "Quick VIN / Ref Search :",
+        filterActiveNotice: "Instant filtering without page reload",
+
+        optMakeAll: "All makes (Toyota, Hyundai...)",
+        optMakeToyota: "Toyota (Hilux, Yaris, Land Cruiser...)",
+        optMakeHyundai: "Hyundai (Tucson, Accent, H1...)",
+        optMakeKia: "Kia (Sportage, Picanto, K2700...)",
+        optMakeNissan: "Nissan (Navara, Qashqai, Patrol...)",
+        optMakeMitsubishi: "Mitsubishi (Canter, L200, Pajero...)",
+        optMakeIsuzu: "Isuzu (D-Max, NPR, NQR...)",
+        optMakeSuzuki: "Suzuki (Jimny, Swift, Carry...)",
+        optMakeHonda: "Honda (CR-V, Civic, Accord...)",
+
+        optSysAll: "All mechanical systems",
+        optSysMoteur: "Engine & Timing",
+        optSysEmbrayage: "Clutch & Gearbox",
+        optSysSuspension: "Steering & Suspension",
+        optSysFreinage: "Braking & Safety",
+        optSysFiltration: "Filtration Systems",
+        optSysEclairage: "Lighting & Electrical",
+        optSysLubrifiants: "Oils & Maintenance Fluids",
+
+        optBrandAll: "All certified equipment brands",
+        optBrandAisin: "AISIN Japan (OEM)",
+        optBrandNissin: "NISSIN Japan (OEM)",
+        optBrandSeiken: "SEIKEN Japan (OEM)",
+        optBrandNabtesco: "NABTESCO Japan (OEM)",
+        optBrandDenso: "DENSO Japan (OEM)",
+        optBrandKyb: "KYB Kayaba Japan",
+        optBrand555: "555 SANKEI Japan",
+        optBrandValeo: "VALEO OEM Quality",
+        optBrandBrembo: "BREMBO Brake Systems",
+
+        optPosAll: "All positions / fitments",
+        optPosFront: "Front Fitment",
+        optPosRear: "Rear Fitment",
+        optPosTop: "Top / Master Position",
+        optPosBottom: "Bottom / Slave Position",
+        optPosLeft: "Left Side (LH)",
+        optPosRight: "Right Side (RH)",
+
+        optStockAll: "All stock statuses",
+        optStockMagasin: "In Store Stock (Immediate)",
+        optStockCasa: "Casablanca Central Hub",
+        optStockImport: "Direct Asian Import Arrival",
+
+        familyGridBadge: "Main Technical Families",
+        familyGridTitle: "Our Mechanical Parts Families",
+        familyGridSubtitle: "Select a family to view all its subcategories and certified references.",
+        familyGridCount: "complete subcategories",
+
+        navCatalogMenu: "Products Catalog",
+        asianOemBadge: "🌟 SPECIAL CUSTOMER ARRIVAL — AISIN / NISSIN / SEIKEN OEM",
+        asianOemTitle: "Hydraulic Clutch Master & Slave Cylinders",
+        asianOemStatus: "In Store Stock (Verified Price)",
+        asianOemSubtitle: "Selection of 4 genuine OEM certified references with OEM numbers and net wholesale prices in Dirhams (DH) for Japanese vehicles & light trucks.",
+        asianOemDirectOrder: "Order Full Set via WhatsApp",
+
+        b2bNavBtn: "B2B Pro Portal",
+        searchTabPartLabel: "Part Ref / Name",
+        searchTabVinLabel: "Chassis No. (VIN Reg)",
+        testVinLabel: "Sample VINs :",
+        vinVerifiedTag: "Chassis 100% Identified",
+        resetVinFilter: "Clear Chassis Filter",
+        realPhotoTag: "Genuine OEM Studio Photo",
+        specVehicle: "Vehicle",
+        specEngine: "Engine",
+        specSystem: "Position",
+        labelUnitPrice: "Unit Price :",
+        btnOrderPart: "Order Part",
+
+        p1Title: "Toyota Hilux Revo Clutch Master Cylinder",
+        p1Type: "Master Cylinder • AISIN Japan Supplier",
+        p2Title: "Honda CR-V Clutch Master Cylinder",
+        p2Type: "Master Cylinder • NISSIN Japan Supplier",
+        p3Title: "Mitsubishi Canter Slave Cylinder",
+        p3Type: "Slave Cylinder • SEIKEN Japan Supplier",
+        p4Title: "Mitsubishi Canter FE635 Clutch Master Cylinder",
+        p4Type: "Master Cylinder • NABTESCO Supplier",
+
+        topQuality: "OEM Certified Official Technical Views",
+        topWhatsapp: "WhatsApp Quote 7/7",
+        chatBtnNav: "Darija Chat",
+        quoteBtnNav: "Request Quote",
+        heroBadge: "100% Genuine Japanese & Korean Mechanical Parts",
+        heroTitle: "Wholesale & Semi-Wholesale Mechanical Auto Parts in Morocco",
+        heroSubtitle: "Engine, clutch, suspension, braking, and filtration directly from certified Japanese, Taiwanese, and Korean manufacturers (Aisin, Nissin, Seiken, 555, Depo, CTR).",
+        selectMakeLabel: "Filter by Asian Vehicle Make :",
+        oemBrandsLabel: "Certified Asian OEM Suppliers :",
+        allMakes: "All Makes",
+        searchPlaceholder: "Search for an exact part (clutch, brake disc, shock absorber, filter...)",
+        allDepartments: "All Departments",
+        filterActive: "Available parts :",
+        filterCount: "parts ready to order",
+        stockBanner: "Available at AM Casablanca Hub / Express 24h Delivery",
+        stockIn: "In Stock (24/48h)",
+        orderBtn: "Check Price & Order",
+        amCertified: "AM Certified OEM",
+        modalTitle: "Request Official Quote",
+        modalSubtitle: "Instant availability and price check with our certified technical advisors",
+        modalPartLabel: "Part Selected for Quote",
+        modalMakeLabel: "Vehicle Make *",
+        modalModelLabel: "Model & Year *",
+        modalPhoneLabel: "Your Phone (WhatsApp) *",
+        modalVinLabel: "VIN / Chassis No. (17 chars from registration document)",
+        modalSendWhatsapp: "Send Request via WhatsApp",
+        footerDesc: "Import & distribution of certified mechanical auto parts in Morocco.",
+        footerCopy: "© 2026 AM Pièces Auto Mécaniques — All rights reserved.",
+        footerSpecial: "Specialist in Japanese & Korean vehicles (Toyota, Hyundai, Kia, Nissan, etc.).",
+        noResultTitle: "No parts found matching this search.",
+        noResultSub: "Please check the spelling or try another keyword or filter.",
+        resetBtn: "Reset filters",
+
+        // SINGLE PRODUCT PAGE KEYS (RIAPA STYLE)
+        backToCatalog: "← Back to catalog",
+        breadcrumbHome: "Home",
+        breadcrumbParts: "Auto parts",
+        viewProductDetail: "View Product Details",
+        supportedBrands: "Supported Brands",
+        supportedBrandsSub: "Parts compliant with Asian OEM manufacturer tolerances",
+        technicalSpecs: "Technical Specifications",
+        highlight1: "Parts tailored for Japanese and Korean vehicles",
+        highlight2: "Leading OEM equipment manufacturers",
+        highlight3: "Technical advice at the counter and via WhatsApp",
+        highlight4: "Fast delivery in 24/48h across Morocco",
+        specRef: "Part Reference (Code)",
+        specCategory: "Category / System",
+        specQuality: "Quality Standard",
+        specStock: "Availability",
+        specWarranty: "Warranty",
+        specDelivery: "Delivery Time",
+        orderWhatsApp: "Order via WhatsApp (+212 663-633640)",
+        requestQuote: "Request official quote (PDF)",
+        relatedProducts: "Other recommended parts in this category"
+      },
+
       ar: {
         topShipping: "توصيل سريع خلال 24/48 ساعة لجميع مدن المغرب",
 
@@ -1341,6 +1524,29 @@
         footerSpecial: "متخصصون في السيارات اليابانية والكورية (تويوتا، هيونداي، كيا، نيسان...).",
         noResultTitle: "لم يتم العثور على أي قطعة مطابقة لهذا البحث.",
         noResultSub: "تأكد من كتابة الكلمة بشكل صحيح أو جرب كلمة بحث أخرى.",
+        
+        // مفاتيح جديدة لصفحة تفاصيل المنتج المفردة (على غرار موقع ريابا)
+        backToCatalog: "← الرجوع إلى كتالوج القطع",
+        breadcrumbHome: "الرئيسية",
+        breadcrumbParts: "قطع غيار السيارات",
+        viewProductDetail: "عرض تفاصيل القطعة",
+        supportedBrands: "الماركات والسيارات المغطاة",
+        supportedBrandsSub: "قطع غيار مطابقة 100% لمعايير وتفاوتات الصانع الأصلي",
+        technicalSpecs: "المواصفات والبطاقة التقنية للقطعة",
+        highlight1: "قطع غيار مطابقة تماماً للسيارات اليابانية والكورية",
+        highlight2: "كبرى العلامات ومصنعي المعدات الأصلية (OEM)",
+        highlight3: "استشارة ودعم تقني فوري عبر الهاتف وواتساب",
+        highlight4: "شحن وتوصيل فوري في 24-48 ساعة لجميع مدن المغرب",
+        specRef: "رمز المرجع التقني (Code)",
+        specCategory: "القسم / النظام الميكانيكي",
+        specQuality: "معايير الجودة والمصادقة",
+        specStock: "حالة التوفر",
+        specWarranty: "ضمان المصنع",
+        specDelivery: "أجل الشحن والتوصيل",
+        orderWhatsApp: "طلب القطعة مباشرة عبر واتساب (+212 663-633640)",
+        requestQuote: "طلب عرض أسعار رسمي (Devis)",
+        relatedProducts: "قطع غيار أخرى مقترحة من نفس العائلة",
+
         resetBtn: "إعادة تعيين الفلاتر"
       }
     };
@@ -1365,30 +1571,39 @@
     let activeMake = 'all';
     let searchQuery = '';
 
+    let activeDetailProduct = null;
+
     function setLanguage(lang) {
       currentLang = lang;
       const root = document.getElementById('htmlRoot');
       const langFRBtn = document.getElementById('langFR');
+      const langENBtn = document.getElementById('langEN');
       const langARBtn = document.getElementById('langAR');
-      
+
+      const inactiveClass = 'px-2 py-0.5 rounded text-[11px] font-bold text-slate-300 hover:text-white transition-all';
+      const activeClass = 'px-2 py-0.5 rounded text-[11px] font-bold bg-red-600 text-white transition-all';
+
+      if (langFRBtn) langFRBtn.className = lang === 'fr' ? activeClass : inactiveClass;
+      if (langENBtn) langENBtn.className = lang === 'en' ? activeClass : inactiveClass;
+      if (langARBtn) langARBtn.className = lang === 'ar' ? (activeClass + ' font-cairo') : (inactiveClass + ' font-cairo');
+
       if (lang === 'ar') {
         root.setAttribute('dir', 'rtl');
         root.setAttribute('lang', 'ar');
-        langARBtn.className = 'px-2 py-0.5 rounded text-[11px] font-bold bg-red-600 text-white transition-all font-cairo';
-        langFRBtn.className = 'px-2 py-0.5 rounded text-[11px] font-bold text-slate-300 hover:text-white transition-all';
-        document.getElementById('searchInput').placeholder = translations.ar.searchPlaceholder;
       } else {
         root.setAttribute('dir', 'ltr');
-        root.setAttribute('lang', 'fr');
-        langFRBtn.className = 'px-2 py-0.5 rounded text-[11px] font-bold bg-red-600 text-white transition-all';
-        langARBtn.className = 'px-2 py-0.5 rounded text-[11px] font-bold text-slate-300 hover:text-white transition-all font-cairo';
-        document.getElementById('searchInput').placeholder = translations.fr.searchPlaceholder;
+        root.setAttribute('lang', lang);
+      }
+
+      const sInput = document.getElementById('searchInput');
+      if (sInput && translations[lang] && translations[lang].searchPlaceholder) {
+        sInput.placeholder = translations[lang].searchPlaceholder;
       }
 
       // Update text in DOM with data-i18n
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
+        if (translations[lang] && translations[lang][key]) {
           el.textContent = translations[lang][key];
         }
       });
@@ -1397,6 +1612,12 @@
       renderCategoryTabs();
       renderProducts();
       if (typeof renderMainFamilies === 'function') renderMainFamilies();
+
+      // Si la page de détail est actuellement ouverte, on la réactualise dans la langue choisie
+      const singleView = document.getElementById('singleProductView');
+      if (singleView && !singleView.classList.contains('hidden') && activeDetailProduct) {
+        renderProductDetailView(activeDetailProduct);
+      }
     }
 
     function renderMakes() {
@@ -1786,7 +2007,8 @@
 
       filtered.forEach(p => {
         const card = document.createElement('div');
-        card.className = 'bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-red-400 dark:hover:border-red-500 transition-all flex flex-col justify-between group relative overflow-hidden';
+        card.className = 'bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl hover:border-red-500 transition-all flex flex-col justify-between group relative overflow-hidden cursor-pointer';
+        card.onclick = () => openProductDetailPage(p.code);
         
         const svgContent = svgIllustrations[p.svg_type] || svgIllustrations['moteur'];
         const displayName = currentLang === 'ar' ? (p.name_ar || p.name) : p.name;
@@ -1860,11 +2082,14 @@
                 <span class="font-bold text-slate-700">${activeMake === 'all' ? translations[currentLang].allMakes : activeMake}</span>
               </div>
               ${priceBlock}
-              <button onclick="openQuoteModal('${displayName} (${p.code})')" class="w-full py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-red-600 text-white text-xs font-bold transition-all flex items-center justify-center space-x-1.5 rtl:space-x-reverse shadow-sm group-hover:shadow-md">
+              <button onclick="event.stopPropagation(); openQuoteModal('${displayName} (${p.code})')" class="w-full py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-red-600 text-white text-xs font-bold transition-all flex items-center justify-center space-x-1.5 rtl:space-x-reverse shadow-sm group-hover:shadow-md">
                 <i class="fa-solid fa-tag text-xs"></i>
                 <span>${translations[currentLang].orderBtn}</span>
               </button>
-              <!-- BOUTON MOTEUR IA SUPPRIMÉ SELON DEMANDE CLIENT -->
+              <button onclick="event.stopPropagation(); openProductDetailPage('${p.code}')" class="w-full mt-2 py-1.5 px-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-[11px] flex items-center justify-center gap-1.5 border border-slate-200 dark:border-slate-700 transition-all shadow-sm">
+                <i class="fa-solid fa-circle-info text-red-500 text-xs"></i>
+                <span>${translations[currentLang].viewProductDetail}</span>
+              </button>
             </div>
           </div>
         `;
@@ -1883,6 +2108,380 @@
       renderProducts();
       if (typeof renderMainFamilies === 'function') renderMainFamilies();
     }
+
+    // ========================================================
+    // LOGIQUE DE LA PAGE UNIQUE PRODUIT (STYLE RIAPA)
+    // ========================================================
+    function openProductDetailPage(code) {
+      if (!code) return;
+      const p = allProducts.find(item => item.code === code || item.slug === code);
+      if (!p) return;
+
+      activeDetailProduct = p;
+      window.location.hash = 'product-' + encodeURIComponent(p.code);
+
+      renderProductDetailView(p);
+
+      const catalogView = document.getElementById('catalogHomeView');
+      const singleView = document.getElementById('singleProductView');
+      if (catalogView) catalogView.classList.add('hidden');
+      if (singleView) singleView.classList.remove('hidden');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function closeProductDetailPage() {
+      activeDetailProduct = null;
+      const singleView = document.getElementById('singleProductView');
+      const catalogView = document.getElementById('catalogHomeView');
+
+      if (singleView) singleView.classList.add('hidden');
+      if (catalogView) catalogView.classList.remove('hidden');
+
+      if (window.location.hash && window.location.hash.startsWith('#product-')) {
+        history.pushState("", document.title, window.location.pathname + window.location.search);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function checkUrlRoute() {
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#product-')) {
+        const code = decodeURIComponent(hash.replace('#product-', ''));
+        openProductDetailPage(code);
+        return;
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const prodParam = urlParams.get('product') || urlParams.get('code');
+      if (prodParam) {
+        openProductDetailPage(prodParam);
+        return;
+      }
+
+      // Si aucun produit dans l'URL et que la vue produit était active
+      const singleView = document.getElementById('singleProductView');
+      if (singleView && !singleView.classList.contains('hidden') && !hash.startsWith('#product-')) {
+        closeProductDetailPage();
+      }
+    }
+
+    window.addEventListener('hashchange', checkUrlRoute);
+
+    function renderProductDetailView(p) {
+      activeDetailProduct = p;
+      const container = document.getElementById('singleProductView');
+      if (!container) return;
+
+      const displayName = currentLang === 'ar' ? (p.name_ar || p.name) : p.name;
+      const displayDesc = currentLang === 'ar' ? (p.desc_ar || p.desc) : p.desc;
+      let displayCat = currentLang === 'ar' ? (p.mainCategoryAr || p.mainCategory) : p.mainCategory;
+      displayCat = displayCat.replace('Pièces Autos - ', '').replace('Carrosserie - ', '').replace('قطع غيار السيارات - ', '');
+
+      const familyTag = p.mainCategory.toUpperCase().replace('PIÈCES AUTOS - ', '').replace('CARROSSERIE - ', '');
+
+      const waMsg = currentLang === 'ar'
+        ? `السلام عليكم AM Pièces Auto، بغيت نستفسر على هاد القطعة: ${displayName} (المرجع OEM: ${p.code}). واش متوفرة وشحال الثمن والتوصيل لمدينتي؟`
+        : currentLang === 'en'
+        ? `Hello AM Pièces Auto, I would like to inquire about this part: ${displayName} (OEM Code: ${p.code}). Is it available and what is the net price and delivery time?`
+        : `Bonjour AM Pièces Auto, je souhaite commander la pièce suivante : ${displayName} (Réf OEM : ${p.code}). Pouvez-vous me confirmer le prix net et la disponibilité ?`;
+      const waUrl = `https://wa.me/212663633640?text=${encodeURIComponent(waMsg)}`;
+
+      // 4 pièces recommandées dans la même famille
+      const related = allProducts.filter(item => item.mainCategory === p.mainCategory && item.code !== p.code).slice(0, 4);
+
+      // 11 Marques couvertes style RIAPA
+      const brands = [
+        { name: 'TOYOTA', country: currentLang === 'ar' ? 'اليابان' : 'Japan' },
+        { name: 'NISSAN', country: currentLang === 'ar' ? 'اليابان' : 'Japan' },
+        { name: 'MITSUBISHI', country: currentLang === 'ar' ? 'اليابان' : 'Japan' },
+        { name: 'HONDA', country: currentLang === 'ar' ? 'اليابان' : 'Japan' },
+        { name: 'MAZDA', country: currentLang === 'ar' ? 'اليابان' : 'Japan' },
+        { name: 'SUZUKI', country: currentLang === 'ar' ? 'اليابان' : 'Japan' },
+        { name: 'ISUZU', country: currentLang === 'ar' ? 'اليابان' : 'Japan' },
+        { name: 'DAIHATSU', country: currentLang === 'ar' ? 'اليابان' : 'Japan' },
+        { name: 'HYUNDAI', country: currentLang === 'ar' ? 'كوريا' : 'Korea' },
+        { name: 'KIA', country: currentLang === 'ar' ? 'كوريا' : 'Korea' },
+        { name: 'DAEWOO', country: currentLang === 'ar' ? 'كوريا' : 'Korea' }
+      ];
+
+      const brandBadgesHtml = brands.map(b => `
+        <div class="flex items-center justify-center p-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-red-500 text-white shadow-sm transition-all hover:scale-105 group select-none">
+          <div class="text-center">
+            <span class="block text-xs font-black tracking-widest uppercase font-mono group-hover:text-red-400">${b.name}</span>
+            <span class="block text-[9px] text-slate-400 font-sans">${b.country}</span>
+          </div>
+        </div>
+      `).join('');
+
+      const relatedHtml = related.map(rel => {
+        const relName = currentLang === 'ar' ? (rel.name_ar || rel.name) : rel.name;
+        return `
+          <div onclick="openProductDetailPage('${rel.code}')" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-3.5 shadow-sm hover:shadow-xl hover:border-red-500 transition-all cursor-pointer group flex flex-col justify-between">
+            <div class="relative bg-white rounded-xl p-3 flex items-center justify-center h-28 border border-slate-100 dark:border-slate-800 mb-2.5">
+              <img src="${rel.real_image}" alt="${relName}" class="max-h-24 max-w-full object-contain group-hover:scale-105 transition-transform" />
+              <span class="absolute top-1.5 left-1.5 rtl:left-auto rtl:right-1.5 px-2 py-0.5 rounded bg-slate-900 text-white font-mono text-[9px] font-bold">${rel.code}</span>
+            </div>
+            <div>
+              <h5 class="text-xs font-bold text-slate-900 dark:text-white group-hover:text-red-600 transition-colors line-clamp-1 mb-1">${relName}</h5>
+              <span class="text-[10px] text-emerald-600 font-semibold flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> ${translations[currentLang].stockIn}
+              </span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <!-- 1. BREADCRUMB & RETOUR CATALOGUE -->
+        <div class="bg-slate-900 text-slate-300 py-3.5 px-4 border-b border-slate-800">
+          <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs">
+            <button onclick="closeProductDetailPage()" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-red-600 text-white font-bold transition-all flex items-center gap-2 border border-slate-700 shadow-sm cursor-pointer">
+              <i class="fa-solid fa-arrow-left rtl:rotate-180"></i>
+              <span>${translations[currentLang].backToCatalog}</span>
+            </button>
+
+            <nav class="flex items-center gap-2 text-slate-400 text-xs overflow-x-auto py-1">
+              <span class="hover:text-white cursor-pointer" onclick="closeProductDetailPage()">${translations[currentLang].breadcrumbHome}</span>
+              <span class="text-slate-600">/</span>
+              <span class="hover:text-white cursor-pointer" onclick="closeProductDetailPage()">${translations[currentLang].breadcrumbParts}</span>
+              <span class="text-slate-600">/</span>
+              <span class="hover:text-white cursor-pointer" onclick="selectCategoryFromMenu('${p.mainCategory}'); closeProductDetailPage();">${displayCat}</span>
+              <span class="text-slate-600">/</span>
+              <span class="text-red-400 font-bold truncate max-w-[200px] sm:max-w-none">${displayName}</span>
+            </nav>
+          </div>
+        </div>
+
+        <!-- 2. HERO STRIP PRODUIT (STYLE RIAPA DÉGRADÉ HANGAR) -->
+        <div class="relative bg-slate-950 text-white py-12 px-4 overflow-hidden border-b border-red-950/40">
+          <div class="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat opacity-40 scale-105" style="background-image: url('images/hero/hangar_entrepot.webp');"></div>
+          <div class="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/50 rtl:bg-gradient-to-l"></div>
+          
+          <div class="max-w-7xl mx-auto">
+            <div class="flex flex-wrap items-center gap-2 mb-2">
+              <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-red-600 text-white text-[11px] font-black uppercase tracking-wider">
+                <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                ${familyTag}
+              </span>
+              <span class="px-2.5 py-0.5 rounded-md bg-white/10 text-slate-300 font-mono text-xs font-bold border border-white/20">
+                ${p.code}
+              </span>
+              <span class="px-2.5 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/30">
+                ${translations[currentLang].amCertified}
+              </span>
+            </div>
+
+            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mt-1 mb-3">
+              ${displayName}
+            </h1>
+
+            <div class="flex flex-wrap items-center gap-2 text-xs text-slate-300">
+              <span class="px-3 py-1 rounded-full bg-red-600 text-white font-mono font-bold">${p.code}</span>
+              <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-200 border border-slate-700">${displayCat}</span>
+              <span class="px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800 flex items-center gap-1.5">
+                <i class="fa-solid fa-shield-halved text-emerald-400"></i> ${translations[currentLang].specQuality}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. CORPS DE LA PAGE PRODUIT : GRILLE 2 COLONNES (STYLE RIAPA) -->
+        <main class="max-w-7xl mx-auto px-4 py-10">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            <!-- COLONNE GAUCHE (5 COLONNES) : PACKSHOT STUDIO HD & BADGES QUALITE -->
+            <div class="lg:col-span-5 space-y-5">
+              <!-- CARD IMAGE HD BLANCHE AVEC REPERES D'ANGLES RIAPA -->
+              <div class="relative bg-white rounded-3xl p-8 border-2 border-slate-200 dark:border-slate-800 shadow-xl flex items-center justify-center min-h-[360px] sm:min-h-[420px] group overflow-hidden">
+                <!-- Repères d'angle style technique studio RIAPA -->
+                <div class="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-slate-300"></div>
+                <div class="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-slate-300"></div>
+                <div class="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-slate-300"></div>
+                <div class="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-slate-300"></div>
+
+                <img src="${p.real_image}" alt="${displayName}" class="max-h-72 sm:max-h-80 w-auto object-contain transition-transform duration-500 group-hover:scale-105" />
+
+                <div class="absolute top-4 left-4 rtl:left-auto rtl:right-4">
+                  <span class="px-2.5 py-1 rounded-md bg-slate-900 text-white font-mono text-xs font-black shadow-md">
+                    ${p.code}
+                  </span>
+                </div>
+
+                <div class="absolute bottom-4 right-4 rtl:right-auto rtl:left-4">
+                  <span class="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 text-[11px] font-bold border border-emerald-200 flex items-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-circle-check text-emerald-600"></i> ${translations[currentLang].realPhotoTag}
+                  </span>
+                </div>
+              </div>
+
+              <!-- SERVICES RAPIDES ASSURÉS PAR AM -->
+              <div class="grid grid-cols-2 gap-3 text-xs">
+                <div class="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center gap-3">
+                  <i class="fa-solid fa-truck-fast text-red-600 text-xl shrink-0"></i>
+                  <div>
+                    <span class="font-extrabold text-slate-900 dark:text-white block">${translations[currentLang].specDelivery}</span>
+                    <span class="text-[11px] text-slate-500 dark:text-slate-400">24h / 48h au Maroc</span>
+                  </div>
+                </div>
+
+                <div class="p-3.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center gap-3">
+                  <i class="fa-solid fa-boxes-packing text-emerald-600 text-xl shrink-0"></i>
+                  <div>
+                    <span class="font-extrabold text-slate-900 dark:text-white block">${translations[currentLang].specStock}</span>
+                    <span class="text-[11px] text-emerald-600 font-bold">${translations[currentLang].stockIn}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- COLONNE DROITE (7 COLONNES) : DESCRIPTION, POINTS CLÉS RIAPA, MARQUES COUVERTES & SPECS -->
+            <div class="lg:col-span-7 space-y-6">
+
+              <!-- DESCRIPTION DU PRODUIT -->
+              <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <p class="text-sm sm:text-base text-slate-700 dark:text-slate-200 leading-relaxed font-medium mb-4">
+                  ${displayDesc}
+                </p>
+
+                <!-- 4 POINTS CLÉS RIAPA AVEC COCHES ROUGES (CONFORMÉMENT À LA CAPTURE FOURNIE) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-slate-100 dark:border-slate-800 text-xs">
+                  <div class="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60">
+                    <i class="fa-regular fa-circle-check text-red-600 text-base shrink-0 mt-0.5"></i>
+                    <span class="font-bold text-slate-800 dark:text-slate-200 leading-snug">${translations[currentLang].highlight1}</span>
+                  </div>
+
+                  <div class="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60">
+                    <i class="fa-regular fa-circle-check text-red-600 text-base shrink-0 mt-0.5"></i>
+                    <span class="font-bold text-slate-800 dark:text-slate-200 leading-snug">${translations[currentLang].highlight2}</span>
+                  </div>
+
+                  <div class="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60">
+                    <i class="fa-regular fa-circle-check text-red-600 text-base shrink-0 mt-0.5"></i>
+                    <span class="font-bold text-slate-800 dark:text-slate-200 leading-snug">${translations[currentLang].highlight3}</span>
+                  </div>
+
+                  <div class="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60">
+                    <i class="fa-regular fa-circle-check text-red-600 text-base shrink-0 mt-0.5"></i>
+                    <span class="font-bold text-slate-800 dark:text-slate-200 leading-snug">${translations[currentLang].highlight4}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- MARQUES COUVERTES / SUPPORTED BRANDS (STYLE EXACT DU SITE RIAPA) -->
+              <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="flex items-center justify-between gap-2 mb-4">
+                  <div>
+                    <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-2">
+                      <i class="fa-solid fa-car text-red-600"></i>
+                      <span>${translations[currentLang].supportedBrands}</span>
+                    </h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                      ${translations[currentLang].supportedBrandsSub}
+                    </p>
+                  </div>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono text-[11px] font-bold">11 Marques</span>
+                </div>
+
+                <!-- Grille des badges de marques (Toyota, Nissan, Mitsubishi, Honda, Hyundai, Kia...) -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
+                  ${brandBadgesHtml}
+                </div>
+              </div>
+
+              <!-- SPÉCIFICATIONS TECHNIQUES DÉTAILLÉES (TABLEAU B2B) -->
+              <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                  <i class="fa-solid fa-sliders text-red-600"></i>
+                  <span>${translations[currentLang].technicalSpecs}</span>
+                </h3>
+
+                <div class="divide-y divide-slate-100 dark:divide-slate-800 text-xs">
+                  <div class="py-2.5 flex justify-between items-center">
+                    <span class="text-slate-500 dark:text-slate-400 font-medium">${translations[currentLang].specRef}</span>
+                    <span class="font-mono font-bold text-slate-900 dark:text-white px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">${p.code}</span>
+                  </div>
+                  <div class="py-2.5 flex justify-between items-center">
+                    <span class="text-slate-500 dark:text-slate-400 font-medium">${translations[currentLang].specCategory}</span>
+                    <span class="font-bold text-slate-900 dark:text-white">${p.mainCategory}</span>
+                  </div>
+                  <div class="py-2.5 flex justify-between items-center">
+                    <span class="text-slate-500 dark:text-slate-400 font-medium">Équipementiers Certifiés</span>
+                    <span class="font-bold text-slate-900 dark:text-white">AISIN, NISSIN, SEIKEN, 555, DEPO, CTR</span>
+                  </div>
+                  <div class="py-2.5 flex justify-between items-center">
+                    <span class="text-slate-500 dark:text-slate-400 font-medium">${translations[currentLang].specQuality}</span>
+                    <span class="font-bold text-emerald-600">Norme OEM ISO/TS 16949 (Première Monte)</span>
+                  </div>
+                  <div class="py-2.5 flex justify-between items-center">
+                    <span class="text-slate-500 dark:text-slate-400 font-medium">${translations[currentLang].specWarranty}</span>
+                    <span class="font-bold text-slate-900 dark:text-white">12 Mois Pièce d'Origine</span>
+                  </div>
+                  <div class="py-2.5 flex justify-between items-center">
+                    <span class="text-slate-500 dark:text-slate-400 font-medium">${translations[currentLang].specStock}</span>
+                    <span class="font-bold text-emerald-600 flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                      Magasin Casablanca (Retrait / Livraison Express)
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ACTIONS COMMANDES / DEVIS DIRECTS -->
+              <div class="p-6 rounded-3xl bg-gradient-to-r from-slate-950 via-slate-900 to-black text-white border-2 border-red-600/30 shadow-2xl space-y-3">
+                <h4 class="text-base font-extrabold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-cart-shopping text-red-500"></i>
+                  <span>Commander cette référence ou demander un devis</span>
+                </h4>
+                <p class="text-xs text-slate-400">
+                  Vérification immédiate de la compatibilité avec votre modèle de véhicule et expédition dans tout le Maroc.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+                  <a href="${waUrl}" target="_blank" class="flex-1 py-3.5 px-5 rounded-2xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition-all hover:scale-[1.02] text-center">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>${translations[currentLang].orderWhatsApp}</span>
+                  </a>
+
+                  <button onclick="openQuoteModal('${displayName} (${p.code})')" class="py-3.5 px-5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm flex items-center justify-center gap-2 border border-slate-700 shadow-md transition-all">
+                    <i class="fa-solid fa-file-invoice text-red-400"></i>
+                    <span>${translations[currentLang].requestQuote}</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- 4. SECTION PIÈCES RECOMMANDÉES DANS LA MÊME FAMILLE -->
+          ${related.length > 0 ? `
+          <div class="mt-16 pt-10 border-t border-slate-200 dark:border-slate-800">
+            <div class="flex items-center justify-between gap-3 mb-6">
+              <div>
+                <h3 class="text-xl font-black text-slate-900 dark:text-white">
+                  ${translations[currentLang].relatedProducts} (${displayCat})
+                </h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                  Découvrez d'autres références d'origine certifiées disponibles immédiatement.
+                </p>
+              </div>
+              <button onclick="selectCategoryFromMenu('${p.mainCategory}'); closeProductDetailPage();" class="text-xs font-bold text-red-600 hover:underline flex items-center gap-1 cursor-pointer">
+                <span>Voir tout le rayon</span>
+                <i class="fa-solid fa-arrow-right rtl:rotate-180"></i>
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              ${relatedHtml}
+            </div>
+          </div>
+          ` : ''}
+
+        </main>
+      `;
+    }
+
 
     function openQuoteModal(partName) {
       document.getElementById('modalPartName').value = partName || (currentLang === 'ar' ? 'طلب عام' : 'Demande générale');
@@ -2717,6 +3316,7 @@ La liaison matérielle pour ${code} a été effacée. Vous pouvez maintenant sim
         p.stock_status = 'in_stock';
       }
       renderProducts();
+    checkUrlRoute();
       alert(`✅ Prix mis à jour dans le catalogue client !
 
 Référence : ${activeAiPart.ref}
